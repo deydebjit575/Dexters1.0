@@ -1,0 +1,91 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#7549E8',
+          50: '#F4F0FD',
+          100: '#E8E1FB',
+          200: '#D2C3F8',
+          300: '#BCA4F4',
+          400: '#9E7DEE',
+          500: '#7549E8',
+          600: '#5F34D1',
+          700: '#4D24B5',
+          800: '#3D1C90',
+          900: '#2A1168',
+        },
+        electric: {
+          DEFAULT: '#20A5D8',
+          50: '#EBF7FC',
+          100: '#CEEEF8',
+          200: '#9EDCF2',
+          300: '#64C5EA',
+          400: '#20A5D8',
+          500: '#1789B5',
+          600: '#116E93',
+          700: '#0C5370',
+        },
+        amberGold: {
+          DEFAULT: '#F3A64A',
+          50: '#FEF8F0',
+          100: '#FDF0DD',
+          200: '#FBDDB7',
+          300: '#F7C68B',
+          400: '#F3A64A',
+          500: '#DE8922',
+          600: '#B56B13',
+        },
+        emeraldGreen: {
+          DEFAULT: '#27B887',
+          50: '#ECFAF4',
+          100: '#D3F4E6',
+          200: '#A7E8CC',
+          300: '#6ED9AD',
+          400: '#27B887',
+          500: '#1C966D',
+          600: '#147655',
+        },
+        canvas: '#F8F8FC',
+        darkCanvas: '#0E0E18',
+        darkCard: '#171727',
+        darkBorder: '#27273F',
+        darkText: '#F3F4F8',
+        brandText: '#202033',
+      },
+      fontFamily: {
+        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['Cinzel', 'Merriweather', 'Georgia', 'serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+      },
+      boxShadow: {
+        'glow-primary': '0 0 25px -5px rgba(117, 73, 232, 0.35)',
+        'glow-electric': '0 0 25px -5px rgba(32, 165, 216, 0.35)',
+        'glow-amber': '0 0 25px -5px rgba(243, 166, 74, 0.35)',
+        'premium': '0 10px 30px -10px rgba(32, 32, 51, 0.08)',
+        'premium-lg': '0 20px 40px -15px rgba(32, 32, 51, 0.12)',
+      },
+      animation: {
+        'float-slow': 'float 6s ease-in-out infinite',
+        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { opacity: 0.8 },
+          '50%': { opacity: 0.4 },
+        },
+      },
+    },
+  },
+  plugins: [],
+}

@@ -1,0 +1,787 @@
+{
+  "users": [
+    {
+      "id": "user_demo_01",
+      "name": "Elena Rostova",
+      "penName": "Archivist Elena",
+      "email": "demo@storyverse.ai",
+      "passwordHash": "$2a$10$BTTPoREnqbER1vwrlI2ytOhYtSGFluHF4/LUJqA/noAJKyiRIz/dm",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "bio": "Worldbuilder, sci-fi novelist, and narrative game designer. Exploring recursive universes and quantum fantasy realms.",
+      "plan": "creator",
+      "credits": 1810,
+      "maxCredits": 1000,
+      "apiKey": "",
+      "preferredAIModel": "auto",
+      "createdAt": "2026-11-14T16:51:00.772Z",
+      "updatedAt": "2026-11-14T17:06:00.271Z"
+    }
+  ],
+  "universes": [
+    {
+      "id": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "name": "The Shattered Realm of Aethelgard",
+      "tagline": "Where fractured celestial moons bleed wild aether into mortal earth.",
+      "genre": "fantasy",
+      "themeColor": "#7549E8",
+      "description": "Aethelgard is a world scarred by the Celestial Sundering, three millennia ago when the Twin Moons fractured. Shards of luminescent aether-glass fell to the ground, giving rise to wild magics, floating monoliths, and ancient sorcerer dynasties fighting over crystal leylines.",
+      "magicRules": "Aetheric Resonance: Sorcery requires attunement to lunar crystalline shards. Casting draws spiritual heat from the caster; overuse causes crystallization of the veins (The Vitreous Blight).",
+      "techLevel": "Archaic Arcane (Runepunk medieval with crystal skyships and arcane golems)",
+      "cosmology": "Two fractured moons (Selene and Umbra) orbiting an indigo horizon. The void between stars whispers forgotten genealogies.",
+      "factions": [
+        {
+          "name": "Order of the Pale Veil",
+          "stance": "Scholarly inquisitors who seal wild rifts"
+        },
+        {
+          "name": "Crystal Reavers of Thalor",
+          "stance": "Pirates harnessing storm sails and lunar glass"
+        },
+        {
+          "name": "The Ashen Regency",
+          "stance": "Militaristic empire seeking to reunite the broken provinces"
+        }
+      ],
+      "isPublic": true,
+      "likes": 142,
+      "createdAt": "2026-10-15T16:51:00.774Z",
+      "updatedAt": "2026-11-14T16:51:00.774Z"
+    },
+    {
+      "id": "uni_cyberia_02",
+      "userId": "user_demo_01",
+      "name": "Neo-Cyberia 2184: The Sub-Grid",
+      "tagline": "High chrome, deep shadows, and rogue neural artificial intelligences.",
+      "genre": "scifi",
+      "themeColor": "#20A5D8",
+      "description": "Built upon the flooded ruins of old Northern Eurasia, Neo-Cyberia is a vertical arcology of three hundred levels. Synthetic rain washes neon-lit alleys where corporate megacorps trade wetware, neural memories, and bio-cybernetic hacks.",
+      "magicRules": "Sub-Grid Protocol: Wetware implants can manipulate electromagnetic fields and wireless neural nets. Going beyond 80% cyber-synchronicity triggers Neural Bleed—where synthetic and human memories cross-pollinate.",
+      "techLevel": "Post-Singularity Cyberpunk (Neural cortical stacks, anti-grav hover skiffs, synthetic wetware, quantum AGI)",
+      "cosmology": "Perpetual overcast acid sky. Orbital mirror arrays project simulated daylight into top-tier penthouses while the undercity drowns in perpetual twilight.",
+      "factions": [
+        {
+          "name": "OmniCorp Dynamics",
+          "stance": "Monopolizes cortical neural tech and bio-cloning"
+        },
+        {
+          "name": "The Zero-Day Syndicate",
+          "stance": "Underground cyber-insurgents fighting for open-source consciousness"
+        },
+        {
+          "name": "Kuroshio Enforcers",
+          "stance": "Cybernetically augmented mercenaries maintaining corporate order"
+        }
+      ],
+      "isPublic": true,
+      "likes": 98,
+      "createdAt": "2026-10-27T16:51:00.775Z",
+      "updatedAt": "2026-11-14T16:51:00.775Z"
+    }
+  ],
+  "characters": [
+    {
+      "id": "char_valen_01",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "name": "Prince Valen Shadowthorn",
+      "role": "Protagonist / Heir to the Sunken Crown",
+      "species": "Human (Aether-Touched)",
+      "age": 26,
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      "personalityTraits": [
+        "Brooding",
+        "Strategist",
+        "Deeply loyal",
+        "Haunted by prophecies"
+      ],
+      "biography": "Exiled prince of the Sunken Spires. After his royal family was assassinated by the Ashen Regency, Valen bonded with a fractured Umbra moon-shard, granting him shadow-veil manipulation at the cost of slow crystal spread on his left arm.",
+      "abilities": [
+        "Shadow-step traversal",
+        "Umbral blade manifestation",
+        "Leyline resonance sensing"
+      ],
+      "motivations": "Reclaim the Sunken Spires and dismantle the Ashen Regency without succumbing to the Vitreous Blight.",
+      "strengths": "Peerless duelist, tactical thinker, unbreakable will.",
+      "weaknesses": "Physical agony from crystal corruption; struggles to trust allies completely.",
+      "characterArc": "From vengeful outcast to a monarch who learns to sacrifice personal vengeance for enduring peace.",
+      "status": "active",
+      "createdAt": "2026-10-17T16:51:00.774Z"
+    },
+    {
+      "id": "char_selyse_02",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "name": "High Archivist Selyse Vane",
+      "role": "Deuteragonist / Rogue Inquisitor",
+      "species": "Human",
+      "age": 29,
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+      "personalityTraits": [
+        "Analytical",
+        "Inquisitive",
+        "Morally gray",
+        "Sharp-witted"
+      ],
+      "biography": "Former grand librarian of the Order of the Pale Veil. She stole the Forbidden Codices after discovering that the Sundering was not an accident of nature, but a calculated purge by the Regency.",
+      "abilities": [
+        "Aether glyph encryption",
+        "Temporal echo detection",
+        "Ward dissolution"
+      ],
+      "motivations": "Unearth the true history of the Moons and find an absolute cure for the Vitreous Blight.",
+      "strengths": "Encyclopedic knowledge of ancient runes, unmatched counter-magic mastery.",
+      "weaknesses": "Physically frail, easily distracted by ancient relics in peril.",
+      "characterArc": "Learning that knowledge without empathy leads to tyranny.",
+      "status": "active",
+      "createdAt": "2026-10-20T16:51:00.774Z"
+    },
+    {
+      "id": "char_korath_03",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "name": "Korath the Stoneguard",
+      "role": "Shield-Brother & Veteran",
+      "species": "Gilded Titanborn",
+      "age": 48,
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+      "personalityTraits": [
+        "Stoic",
+        "Dry humor",
+        "Fiercely protective",
+        "Honorable"
+      ],
+      "biography": "Last surviving commander of the Gilded Vanguard. He served Valen’s father and swore a death-oath upon the shattered altar to keep Valen breathing until the dawn star rises once more.",
+      "abilities": [
+        "Earth-resonance grounding",
+        "Siege-breaking brute force",
+        "Aether-suppression aura"
+      ],
+      "motivations": "Protect Valen and atone for the night he failed to save the King.",
+      "strengths": "Immense physical endurance, absolute tactical defense.",
+      "weaknesses": "Slow in agile combat, deeply superstitious about lunar eclipses.",
+      "characterArc": "Finding personal purpose beyond obsolete oaths of servitude.",
+      "status": "active",
+      "createdAt": "2026-10-25T16:51:00.774Z"
+    },
+    {
+      "id": "char_kaelen_04",
+      "universeId": "uni_cyberia_02",
+      "userId": "user_demo_01",
+      "name": "Kaelen Voss",
+      "role": "Ex-Corpo Neural Infiltrator",
+      "species": "Cyborg / Enhanced Human",
+      "age": 31,
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
+      "personalityTraits": [
+        "Cynical",
+        "Hyper-perceptive",
+        "Caffeine addict",
+        "Code virtuoso"
+      ],
+      "biography": "Former chief offensive hacker for OmniCorp Dynamics. After discovering their project to overwrite dissident memories with corporate advertising arrays, he erased his biometric records and disappeared into the Sub-Grid.",
+      "abilities": [
+        "Direct neural bus jack-in",
+        "Sub-second optical camouflage",
+        "Thermal overclocking"
+      ],
+      "motivations": "Leak the OmniCorp \"Tabula Rasa\" firmware to the open net before their hit squads zero his cortical stack.",
+      "strengths": "Peerless cybersecurity breach specialist, lightning reflexes under fire.",
+      "weaknesses": "Severe Neural Bleed episodes; requires synthetic neuro-stabilizers daily.",
+      "characterArc": "Transitioning from a lone survivalist into the architect of digital revolution.",
+      "status": "active",
+      "createdAt": "2026-10-29T16:51:00.775Z"
+    },
+    {
+      "id": "char_mara_05",
+      "universeId": "uni_cyberia_02",
+      "userId": "user_demo_01",
+      "name": "Mara \"Chrome-Fang\" Jin",
+      "role": "Sub-Grid Street Ronin & Smuggler",
+      "species": "Enhanced Human",
+      "age": 27,
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+      "personalityTraits": [
+        "Fearless",
+        "Sarcastic",
+        "Loyal to the crew",
+        "Streetwise"
+      ],
+      "biography": "Raised in the neon gutter of Level -14. She modified her arms with carbon-weave muscle fibers and mantis blades to survive corporate sweeps. Now runs illicit quantum drive deliveries.",
+      "abilities": [
+        "High-frequency blade lethality",
+        "Kinetic wall-running",
+        "Acrobatic evade"
+      ],
+      "motivations": "Earn enough credits to buy orbital colony passage for her younger brother.",
+      "strengths": "Deadly close-quarters assassin, intimately knows every sewage duct and vent in Neo-Cyberia.",
+      "weaknesses": "Impulsive; will risk everything for street orphans in crossfire.",
+      "characterArc": "Learning that escaping to the orbital colonies is an illusion if the system remains untouched.",
+      "status": "active",
+      "createdAt": "2026-10-30T16:51:00.775Z"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel_01",
+      "universeId": "uni_aethelgard_01",
+      "sourceId": "char_valen_01",
+      "targetId": "char_selyse_02",
+      "relationType": "ally",
+      "description": "Bound by the stolen Codices; Selyse guides Valen’s corrupting shard while he protects her from Veil assassins.",
+      "strength": 85
+    },
+    {
+      "id": "rel_02",
+      "universeId": "uni_aethelgard_01",
+      "sourceId": "char_valen_01",
+      "targetId": "char_korath_03",
+      "relationType": "family",
+      "description": "Korath is a surrogate father and shield-brother; would gladly give his life to see Valen crowned.",
+      "strength": 95
+    },
+    {
+      "id": "rel_03",
+      "universeId": "uni_aethelgard_01",
+      "sourceId": "char_selyse_02",
+      "targetId": "char_korath_03",
+      "relationType": "complex",
+      "description": "Korath distrusts her secretive scholar methods, but respects her tactical cunning in battle.",
+      "strength": 60
+    },
+    {
+      "id": "rel_04",
+      "universeId": "uni_cyberia_02",
+      "sourceId": "char_kaelen_04",
+      "targetId": "char_mara_05",
+      "relationType": "ally",
+      "description": "Kaelen hacks the security grids; Mara clears the physical obstacles with her blades.",
+      "strength": 90
+    }
+  ],
+  "locations": [
+    {
+      "id": "loc_citadel_01",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "name": "The Citadel of Dawn",
+      "type": "kingdom",
+      "coordinates": {
+        "x": 280,
+        "y": 180
+      },
+      "description": "A colossal mountain fortress carved directly from incandescent quartz. Its towers refract the sunlight into radiant shields that keep the Ashen Regency’s siege beasts at bay.",
+      "climate": "Temperate alpine with luminous crystal fog",
+      "politicalSystem": "Elected Council of Sun-Keepers",
+      "culture": "Veneration of solar harmony, grand glass-blowing guilds, choral hymnody",
+      "defense": "Prismatic wall of light and three legions of Solar Dragoons",
+      "connections": [
+        "loc_sunken_02",
+        "loc_whispering_03"
+      ],
+      "createdAt": "2026-10-17T16:51:00.775Z"
+    },
+    {
+      "id": "loc_sunken_02",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "name": "Sunken Spires of Thalor",
+      "type": "ruins",
+      "coordinates": {
+        "x": 520,
+        "y": 340
+      },
+      "description": "An ancient coastal city submerged beneath turquoise tide waters when the moon fell. Only the high crystal spires and bell towers rise above the waves, now inhabited by sea scavengers and aether-divers.",
+      "climate": "Oceanic tides with electric bioluminescent storms",
+      "politicalSystem": "Lawless haven ruled by pirate captains and artifact brokers",
+      "culture": "Diving rituals, maritime barter, oceanic shanties of lost dynasties",
+      "defense": "Submerged razor reefs and trained abyssal leviathans",
+      "connections": [
+        "loc_citadel_01",
+        "loc_whispering_03",
+        "loc_frostfall_04"
+      ],
+      "createdAt": "2026-10-18T16:51:00.775Z"
+    },
+    {
+      "id": "loc_whispering_03",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "name": "The Whispering Hollows",
+      "type": "sanctuary",
+      "coordinates": {
+        "x": 180,
+        "y": 460
+      },
+      "description": "An ethereal petrified forest where trees made of silver glass capture voices of those who passed through centuries prior. The Order of the Pale Veil maintains secret listening posts here.",
+      "climate": "Perpetual twilight, gentle hum of resonant wind",
+      "politicalSystem": "Monastic neutrality governed by the Silent Priests",
+      "culture": "Strict silence, archival meditation, memory-weaving",
+      "defense": "Illusory mist mazes that trap unwanted intruders in waking dreams",
+      "connections": [
+        "loc_citadel_01",
+        "loc_sunken_02"
+      ],
+      "createdAt": "2026-10-19T16:51:00.775Z"
+    },
+    {
+      "id": "loc_frostfall_04",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "name": "Frostfall Peak & The Ashen Gates",
+      "type": "city",
+      "coordinates": {
+        "x": 680,
+        "y": 160
+      },
+      "description": "The grim volcanic-ice fortress of the Ashen Regency, built on a dormant magma fissure capped by black ice. Giant smoke smelters forge iron-plated dreadnoughts day and night.",
+      "climate": "Sub-zero blizzards mingled with sulfured volcanic ash",
+      "politicalSystem": "Authoritarian Imperial Dictatorship",
+      "culture": "Military meritocracy, Spartan discipline, state-mandated machine veneration",
+      "defense": "Heavy twin-barrel rail mortars and obsidian trench barricades",
+      "connections": [
+        "loc_sunken_02"
+      ],
+      "createdAt": "2026-10-20T16:51:00.775Z"
+    },
+    {
+      "id": "loc_skyline_05",
+      "universeId": "uni_cyberia_02",
+      "userId": "user_demo_01",
+      "name": "District 0: The Skyline Spire",
+      "type": "city",
+      "coordinates": {
+        "x": 300,
+        "y": 150
+      },
+      "description": "A 2-kilometer-high carbon monolith piercing the smog. Home to the billionaire executive caste, botanical gardens under artificial glass domes, and high-frequency quantum trading nodes.",
+      "climate": "Filtered conditioned air, perpetual synthetic balmy summer",
+      "politicalSystem": "Boardroom Plutocracy",
+      "culture": "Hyper-minimalist luxury, synthetic immortality cults, designer genes",
+      "defense": "Automated hunter-killer drone swarms and particle perimeter beams",
+      "connections": [
+        "loc_neon_06"
+      ],
+      "createdAt": "2026-10-30T16:51:00.775Z"
+    },
+    {
+      "id": "loc_neon_06",
+      "universeId": "uni_cyberia_02",
+      "userId": "user_demo_01",
+      "name": "Neon Alley (Level -04)",
+      "type": "city",
+      "coordinates": {
+        "x": 500,
+        "y": 350
+      },
+      "description": "The beating, congested heart of the lower city. Rain-slick asphalt, noodle stalls bathed in flickering holographic dragons, black-market cyber clinics, and rogue AI brokers.",
+      "climate": "Humid, acidic rain dripping from upper air condensers",
+      "politicalSystem": "Syndicate turf alliances",
+      "culture": "Cyber-punk street fashion, synthetic synthwave clubs, crypto-barter",
+      "defense": "Gang lookouts, jury-rigged EMP traps, and labyrinthine alleys",
+      "connections": [
+        "loc_skyline_05"
+      ],
+      "createdAt": "2026-10-31T16:51:00.775Z"
+    }
+  ],
+  "timelines": [
+    {
+      "id": "time_01",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "title": "The Great Celestial Sundering",
+      "era": "Age of Fractures",
+      "orderYear": -3000,
+      "yearDisplay": "3000 BS (Before Sundering)",
+      "description": "The Twin Moons clash in orbit. Umbra shatters, raining crystal fire across the globe and sinking the Golden Empire of Thalor.",
+      "significance": "Origin of wild aether magic, creation of the Vitreous Blight, and reshaping of modern geography.",
+      "relatedCharacterIds": [],
+      "relatedLocationIds": [
+        "loc_sunken_02"
+      ],
+      "conflictWarning": null,
+      "createdAt": "2026-10-20T16:51:00.775Z"
+    },
+    {
+      "id": "time_02",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "title": "The Fall of the Sunken Spires",
+      "era": "Reign of Ash",
+      "orderYear": -10,
+      "yearDisplay": "Year 2894 AS",
+      "description": "The Ashen Regency deploys iron dreadnoughts to bombard the Thalor dynasty. King Alden is slain; Prince Valen is smuggled out by Korath.",
+      "significance": "Extinction of the royal lineage except Valen; Regency takes control of the aether-quarries.",
+      "relatedCharacterIds": [
+        "char_valen_01",
+        "char_korath_03"
+      ],
+      "relatedLocationIds": [
+        "loc_sunken_02",
+        "loc_frostfall_04"
+      ],
+      "conflictWarning": null,
+      "createdAt": "2026-10-21T16:51:00.775Z"
+    },
+    {
+      "id": "time_03",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "title": "Heist of the Forbidden Codices",
+      "era": "Current Age",
+      "orderYear": -1,
+      "yearDisplay": "Year 2903 AS",
+      "description": "Selyse Vane breaks into the Pale Veil Vaults, retrieving the true prophecy of the Lunar Convergence.",
+      "significance": "Begins the manhunt that unites Selyse and Valen at the Whispering Hollows.",
+      "relatedCharacterIds": [
+        "char_selyse_02"
+      ],
+      "relatedLocationIds": [
+        "loc_whispering_03"
+      ],
+      "conflictWarning": null,
+      "createdAt": "2026-10-25T16:51:00.775Z"
+    },
+    {
+      "id": "time_04",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "title": "The Battle of the Whispering Mist",
+      "era": "Current Age",
+      "orderYear": 0,
+      "yearDisplay": "Present Day",
+      "description": "Valen, Korath, and Selyse hold the pass against Imperial Black Inquisitors, unleashing a resonant aether shockwave.",
+      "significance": "First public display of Valen’s Umbral shard abilities, exposing his survival to the Regency.",
+      "relatedCharacterIds": [
+        "char_valen_01",
+        "char_selyse_02",
+        "char_korath_03"
+      ],
+      "relatedLocationIds": [
+        "loc_whispering_03"
+      ],
+      "conflictWarning": null,
+      "createdAt": "2026-11-04T16:51:00.775Z"
+    }
+  ],
+  "stories": [
+    {
+      "id": "story_aethelgard_01",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "title": "Echoes of the Fractured Moon",
+      "synopsis": "When the exiled Prince Valen uncovers an ancient prophecy deciphered by a rogue archivist, he must decide whether to save his own soul from crystal corruption or burn his kingdom to reclaim it.",
+      "genre": "fantasy",
+      "tone": "Epic & Melancholic",
+      "targetWordCount": 50000,
+      "status": "in_progress",
+      "isPublic": true,
+      "likes": 89,
+      "views": 1240,
+      "bookmarks": 45,
+      "createdAt": "2026-10-30T16:51:00.775Z",
+      "updatedAt": "2026-11-14T16:51:00.775Z"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "chap_01",
+      "storyId": "story_aethelgard_01",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "chapterNumber": 1,
+      "title": "The Vitreous Oath",
+      "content": "The wind sweeping through the Whispering Hollows tasted of ozone and pulverized silver.\n\nValen adjusted the heavy leather vambrace over his left arm, grimacing as the dark crystalline tendrils pulsed beneath his skin. With each beat of his mortal heart, the Umbra shard rooted deeper, a cold ember promising vengeance at the toll of his humanity.\n\n\"If you keep touching it, the resonance will wake every Hound within five leagues,\" Selyse muttered without lifting her gaze from the brass-bound astrolabe spread across the petrified stump.\n\n\"Let them come,\" Korath rumbled from the tree line, grinding the tip of his titan-gilded maul into the crystalline loam. \"My hammer hasn't tasted Imperial iron since the tide turned red at Thalor.\"\n\nValen stepped into the clearing, the twilight glow catching the sharp edges of his jaw. \"The Regency isn't hunting us with ordinary soldiers, Korath. The Grand Inquisitor has deployed the Vitreous Skiffs. They fly on stolen lunar glass.\"\n\nSelyse traced a fingertip over the parchment's glowing blue margin. \"And according to the codex, those skiffs are heading directly for the Sunken Spires. If they reach the Moon Vault before we do, there won't be an Aethelgard left to liberate.\"\n\nValen looked toward the jagged silhouettes of the eastern mountains where the ruined spires slept under the waves. The time for hiding in shadows was over.",
+      "wordCount": 224,
+      "summary": "Valen, Selyse, and Korath confer in the Whispering Hollows, realizing the Ashen Regency is racing toward the Sunken Spires to plunder the Moon Vault.",
+      "autoSavedAt": "2026-11-14T16:51:00.775Z",
+      "createdAt": "2026-10-30T16:51:00.775Z"
+    }
+  ],
+  "dialogues": [
+    {
+      "id": "diag_01",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "title": "Confrontation at the Glass Tree",
+      "settingLocationId": "loc_whispering_03",
+      "tone": "Tense & Philosophical",
+      "characterIds": [
+        "char_valen_01",
+        "char_selyse_02"
+      ],
+      "lines": [
+        {
+          "characterId": "char_valen_01",
+          "characterName": "Prince Valen Shadowthorn",
+          "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+          "emotion": "Defiant",
+          "stageDirection": "flexing his crystal-laced fingers in the moonlight",
+          "text": "You ask me to measure my hatred, Selyse. But every time I close my eyes, I hear the towers crashing into the surf at Thalor. My blood belongs to that ruin."
+        },
+        {
+          "characterId": "char_selyse_02",
+          "characterName": "High Archivist Selyse Vane",
+          "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+          "emotion": "Coldly Rational",
+          "stageDirection": "carefully rolling the parchment without meeting his eyes",
+          "text": "Vengeance is an inefficient fuel, Your Grace. It burns hot, turns your lungs to ash, and leaves the enemy sitting upon your father's throne while you rot into a monument of quartz."
+        },
+        {
+          "characterId": "char_valen_01",
+          "characterName": "Prince Valen Shadowthorn",
+          "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+          "emotion": "Somber",
+          "stageDirection": "stepping closer, his voice dropping to a whisper",
+          "text": "Then give me a weapon that doesn't require my heart as collateral."
+        },
+        {
+          "characterId": "char_selyse_02",
+          "characterName": "High Archivist Selyse Vane",
+          "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+          "emotion": "Earnest",
+          "stageDirection": "looking up directly into his dark eyes",
+          "text": "That is precisely why I stole the Codices. Now hold still and let me examine the runes along your collarbone before the frost takes your throat."
+        }
+      ],
+      "notes": "Reveals the deep friction between Valen’s raw trauma and Selyse’s academic detachment.",
+      "createdAt": "2026-11-02T16:51:00.775Z"
+    }
+  ],
+  "branchingStories": [
+    {
+      "id": "branch_01",
+      "universeId": "uni_aethelgard_01",
+      "userId": "user_demo_01",
+      "title": "Infiltration of the Moon Vault",
+      "synopsis": "Lead Prince Valen through the submerged ruins of Thalor. Will you breach the vault by stealth, ignite the aether-wells, or parley with the pirate barons?",
+      "isPublic": true,
+      "startNodeId": "node_01",
+      "nodes": [
+        {
+          "id": "node_01",
+          "title": "The Tides of Thalor",
+          "content": "You stand atop the half-submerged bell tower of Thalor. Below you, the turquoise waves foam against ancient marble. Two patrol boats of the Ashen Regency are anchored near the watergate, their spotlights cutting through the misty spray.",
+          "choices": [
+            {
+              "text": "Dive into the shadowed waters and slip in through the drainage conduit",
+              "targetNodeId": "node_02"
+            },
+            {
+              "text": "Unleash an Umbral shockwave to disable the patrol boats simultaneously",
+              "targetNodeId": "node_03"
+            },
+            {
+              "text": "Signal the Crystal Reavers waiting on the outer reef for a coordinated strike",
+              "targetNodeId": "node_04"
+            }
+          ]
+        },
+        {
+          "id": "node_02",
+          "title": "The Submerged Conduit",
+          "content": "The frigid salt water stings your skin, but your Umbra shard responds to the chill, glowing with faint sapphire radiance. You emerge inside the lower archive catacombs. Selyse whispers that the vault seals are ancient and intact, but a ward trap is active.",
+          "choices": [
+            {
+              "text": "Have Selyse systematically dismantle the lunar glyphs",
+              "targetNodeId": "node_05"
+            },
+            {
+              "text": "Force the heavy stone portal with Korath's titan maul",
+              "targetNodeId": "node_06"
+            }
+          ]
+        },
+        {
+          "id": "node_03",
+          "title": "Umbral Overload",
+          "content": "You drop your vambrace and channel the dark lunar shard. Black lightning arcs across the waves! Both skiffs lose power, but the shockwave sends a jolt of sharp crystalline agony through your chest. Blood drips from your fingertips.",
+          "choices": [
+            {
+              "text": "Push through the pain and sprint into the Vault before reinforcements arrive",
+              "targetNodeId": "node_05"
+            },
+            {
+              "text": "Pause to let Selyse apply an aether-binding tourniquet",
+              "targetNodeId": "node_06"
+            }
+          ]
+        },
+        {
+          "id": "node_04",
+          "title": "The Pirate Fleet Attacks",
+          "content": "Red flare shells illuminate the sea! The Crystal Reavers charge with harp-cannons singing. In the ensuing chaos, the garrison is overwhelmed, but Captain Vex demands half of whatever lies within the Moon Vault as payment.",
+          "choices": [
+            {
+              "text": "Agree to the split to secure their heavy artillery for the interior breach",
+              "targetNodeId": "node_05"
+            },
+            {
+              "text": "Remind Captain Vex of his family's ancient fealty to the Sunken Crown",
+              "targetNodeId": "node_06"
+            }
+          ]
+        },
+        {
+          "id": "node_05",
+          "title": "The Heart of the Moon (Victory)",
+          "content": "The ancient vault yields! Inside rests the Prime Core of Selene, humming with clean celestial power that calms the burning crystal in your veins. With this artifact, the liberation of Aethelgard has truly begun.",
+          "choices": []
+        },
+        {
+          "id": "node_06",
+          "title": "The Regency Ambush (Complication)",
+          "content": "The delay proves costly. Grand Inquisitor Kael steps from the shadows with twenty heavy arbalesters. \"A touching reunion, Prince Valen,\" he sneers. Your back is to the sealed vault, but Korath raises his shield with a ferocious roar.",
+          "choices": []
+        }
+      ],
+      "createdAt": "2026-11-06T16:51:00.775Z"
+    }
+  ],
+  "communityPosts": [
+    {
+      "id": "post_01",
+      "userId": "user_demo_01",
+      "authorName": "Elena Rostova",
+      "authorAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "type": "universe",
+      "itemId": "uni_aethelgard_01",
+      "title": "The Shattered Realm of Aethelgard",
+      "summary": "Aethelgard is a world scarred by the Celestial Sundering, three millennia ago when the Twin Moons fractured. Shards of luminescent aether-glass fell to the ground, giving rise to wild magics, floating monoliths, and ancient sorcerer dynasties fighting over crystal leylines.",
+      "genre": "fantasy",
+      "likes": 142,
+      "bookmarks": 56,
+      "views": 2400,
+      "tags": [
+        "High Fantasy",
+        "Lunar Magic",
+        "Shattered Worlds"
+      ],
+      "createdAt": "2026-10-25T16:51:00.775Z"
+    },
+    {
+      "id": "post_02",
+      "userId": "user_demo_01",
+      "authorName": "Elena Rostova",
+      "authorAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "type": "story",
+      "itemId": "story_aethelgard_01",
+      "title": "Echoes of the Fractured Moon",
+      "summary": "When the exiled Prince Valen uncovers an ancient prophecy deciphered by a rogue archivist, he must decide whether to save his own soul from crystal corruption or burn his kingdom to reclaim it.",
+      "genre": "fantasy",
+      "likes": 89,
+      "bookmarks": 34,
+      "views": 1240,
+      "tags": [
+        "Grimdark",
+        "Epic Fantasy",
+        "Crystal Blight"
+      ],
+      "createdAt": "2026-11-04T16:51:00.775Z"
+    },
+    {
+      "id": "post_03",
+      "userId": "user_demo_01",
+      "authorName": "Elena Rostova",
+      "authorAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "type": "universe",
+      "itemId": "uni_cyberia_02",
+      "title": "Neo-Cyberia 2184: The Sub-Grid",
+      "summary": "Built upon the flooded ruins of old Northern Eurasia, Neo-Cyberia is a vertical arcology of three hundred levels. Synthetic rain washes neon-lit alleys where corporate megacorps trade wetware, neural memories, and bio-cybernetic hacks.",
+      "genre": "scifi",
+      "likes": 98,
+      "bookmarks": 41,
+      "views": 1850,
+      "tags": [
+        "Cyberpunk",
+        "Neural Net",
+        "Dystopian"
+      ],
+      "createdAt": "2026-11-09T16:51:00.775Z"
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "subs_aa43f9b38a",
+      "createdAt": "2026-11-14T17:06:00.268Z",
+      "userId": "user_demo_01",
+      "plan": "creator",
+      "amount": 299,
+      "currency": "INR",
+      "status": "active",
+      "paymentProvider": "razorpay",
+      "paymentId": "pay_test_verified_123",
+      "orderId": "razorpay_order_1794675960265_2547",
+      "validUntil": "2026-12-14T17:06:00.268Z"
+    }
+  ],
+  "aiUsageLogs": [
+    {
+      "id": "log_01",
+      "userId": "user_demo_01",
+      "universeId": "uni_aethelgard_01",
+      "actionType": "Chapter Generation",
+      "promptPreview": "Write Chapter 1 showing Valen inspecting his corrupted arm in Whispering Hollows...",
+      "tokens": 850,
+      "creditsDeducted": 15,
+      "model": "StoryVerse Contextual Engine v2",
+      "createdAt": "2026-11-12T16:51:00.775Z"
+    },
+    {
+      "id": "log_02",
+      "userId": "user_demo_01",
+      "universeId": "uni_aethelgard_01",
+      "actionType": "Dialogue Simulation",
+      "promptPreview": "Generate philosophical debate between Prince Valen and Selyse Vane regarding vengeance...",
+      "tokens": 520,
+      "creditsDeducted": 10,
+      "model": "StoryVerse Contextual Engine v2",
+      "createdAt": "2026-11-13T16:51:00.775Z"
+    },
+    {
+      "id": "aiUs_86b0d63047",
+      "createdAt": "2026-11-14T17:06:00.223Z",
+      "userId": "user_demo_01",
+      "universeId": "uni_aethelgard_01",
+      "actionType": "Character Creation",
+      "promptPreview": "Role: Infiltrator",
+      "tokens": 400,
+      "creditsDeducted": 10,
+      "model": "StoryVerse Contextual Engine v2.4 (Context-Synthesized)"
+    },
+    {
+      "id": "aiUs_aa393dbce1",
+      "createdAt": "2026-11-14T17:06:00.234Z",
+      "userId": "user_demo_01",
+      "universeId": "uni_aethelgard_01",
+      "actionType": "Chapter Generation",
+      "promptPreview": "Valen tests his crystal blade against the moon hounds",
+      "tokens": 400,
+      "creditsDeducted": 10,
+      "model": "StoryVerse Contextual Engine v2.4 (Context-Synthesized)"
+    },
+    {
+      "id": "aiUs_d52de78b2b",
+      "createdAt": "2026-11-14T17:06:00.245Z",
+      "userId": "user_demo_01",
+      "universeId": "uni_aethelgard_01",
+      "actionType": "Dialogue Generation",
+      "promptPreview": "Whether to risk the moon vault breach",
+      "tokens": 400,
+      "creditsDeducted": 10,
+      "model": "StoryVerse Contextual Engine v2.4 (Context-Synthesized)"
+    },
+    {
+      "id": "aiUs_0006385e98",
+      "createdAt": "2026-11-14T17:06:00.259Z",
+      "userId": "user_demo_01",
+      "universeId": "uni_aethelgard_01",
+      "actionType": "Continuity Audit",
+      "promptPreview": "The dawn broke in jagged fractures of light above The Citadel of Dawn, casting elongated shadows acr",
+      "tokens": 400,
+      "creditsDeducted": 10,
+      "model": "StoryVerse Contextual Engine v2.4 (Context-Synthesized)"
+    }
+  ]
+}

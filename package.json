@@ -1,0 +1,23 @@
+{
+  "name": "storyverse-ai",
+  "version": "1.0.0",
+  "description": "Imagine Worlds. Create Stories. Build Universes.",
+  "type": "module",
+  "scripts": {
+    "start": "node server/src/index.js",
+    "dev": "node dev-runner.js",
+    "build": "cmd /c \"cd client && npm run build\"",
+    "server": "cmd /c \"cd server && npm start\"",
+    "client": "cmd /c \"cd client && npm run dev\""
+  },
+  "keywords": [
+    "storytelling",
+    "worldbuilding",
+    "ai",
+    "saas",
+    "narrative-engine",
+    "creative-writing"
+  ],
+  "author": "StoryVerse AI Team",
+  "license": "MIT"
+}

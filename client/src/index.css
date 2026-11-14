@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 117 73 232;
+    --color-electric: 32 165 216;
+    --color-amber: 243 166 74;
+    --color-emerald: 39 184 135;
+  }
+
+  body {
+    @apply bg-[#F8F8FC] text-[#202033] min-h-screen selection:bg-primary/20 selection:text-primary;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  .dark body {
+    @apply bg-[#0E0E18] text-[#F3F4F8];
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/60;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  @apply bg-white/85 dark:bg-[#171727]/85 backdrop-blur-md border border-gray-100 dark:border-gray-800 shadow-premium;
+}
+
+.glass-nav {
+  @apply bg-white/90 dark:bg-[#0E0E18]/90 backdrop-blur-lg border-b border-gray-100 dark:border-gray-800/80;
+}
+
+/* Interactive Node Glow */
+.node-glow-primary {
+  filter: drop-shadow(0 0 12px rgba(117, 73, 232, 0.45));
+}
+.node-glow-electric {
+  filter: drop-shadow(0 0 12px rgba(32, 165, 216, 0.45));
+}
+.node-glow-amber {
+  filter: drop-shadow(0 0 12px rgba(243, 166, 74, 0.45));
+}
+.node-glow-emerald {
+  filter: drop-shadow(0 0 12px rgba(39, 184, 135, 0.45));
+}
