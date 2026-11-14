@@ -63,6 +63,7 @@ export default {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
         serif: ['Cinzel', 'Merriweather', 'Georgia', 'serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        script: ['Dancing Script', 'cursive'],
       },
       boxShadow: {
         'glow-primary': '0 0 25px -5px rgba(117, 73, 232, 0.35)',

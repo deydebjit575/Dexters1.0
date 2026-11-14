@@ -1,862 +1,507 @@
 import React, { useState } from 'react';
 import {
   Sparkles,
+  Rocket,
+  Play,
   ArrowRight,
   Globe,
-  Compass,
   Users,
   Feather,
-  GitFork,
+  MessageSquare,
   Clock,
-  ShieldCheck,
-  Check,
+  GitFork,
   Star,
+  Wand2,
+  BookOpen,
+  Check,
   ChevronDown,
-  Play,
+  Compass,
   Share2,
-  Lock,
-  Layers,
-  Zap,
+  CheckCircle2,
+  Send,
+  X,
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import AuthModal from '../components/AuthModal';
+import { useAuth } from '../context/AuthContext';
 
 export default function LandingPage({ onEnterApp }) {
+  const { showToast } = useAuth();
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authTab, setAuthTab] = useState('register');
-  const [activeUniverseTab, setActiveUniverseTab] = useState('aethelgard');
-  const [faqOpenIndex, setFaqOpenIndex] = useState(null);
-  const [legalModal, setLegalModal] = useState(null); // 'terms' | 'privacy'
+  const [selectedUniverseModal, setSelectedUniverseModal] = useState(null);
+  const [pricingModal, setPricingModal] = useState(false);
+  const [howItWorksModal, setHowItWorksModal] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [activeFeatureIndex, setActiveFeatureIndex] = useState(6); // Default active: Connected Universe Engine
+  const [legalModal, setLegalModal] = useState(null);
 
   const handleOpenAuth = (tab = 'register') => {
     setAuthTab(tab);
     setAuthModalOpen(true);
   };
 
-  const faqs = [
+  const handleSubscribeNewsletter = (e) => {
+    e.preventDefault();
+    if (!newsletterEmail || !newsletterEmail.includes('@')) {
+      showToast('Please enter a valid email address.', 'error');
+      return;
+    }
+    showToast('Welcome to the StoryVerse community! Transmission received.', 'success');
+    setNewsletterEmail('');
+  };
+
+  // Feature Dock Items matching the exact screenshot
+  const featureDockItems = [
+    { id: 'world', label: 'World Builder', icon: Globe, color: '#A855F7' },
+    { id: 'character', label: 'Character Lab', icon: Users, color: '#20A5D8' },
+    { id: 'studio', label: 'AI Story Studio', icon: Feather, color: '#EC4899' },
+    { id: 'dialogue', label: 'Dialogue Generator', icon: MessageSquare, color: '#38BDF8' },
+    { id: 'timeline', label: 'Timeline Manager', icon: Clock, color: '#34D399' },
+    { id: 'interactive', label: 'Interactive Stories', icon: GitFork, color: '#F59E0B' },
     {
-      q: 'What is the "Connected Universe Engine" and how does it work?',
-      a: 'Unlike generic story generators that produce isolated stories, StoryVerse AI interconnects every character, kingdom, timeline era, and magical law into one shared relational database. When writing a chapter in the Story Studio or generating dialogue, the AI automatically retrieves this context so your lore remains 100% consistent and contradiction-free.',
+      id: 'engine',
+      label: 'Connected Universe Engine',
+      icon: Star,
+      color: '#FBBF24',
+      highlight: true,
+    },
+  ];
+
+  // Example Community Universes matching screenshot
+  const communityUniverses = [
+    {
+      id: 'lost-kingdom',
+      name: 'The Lost Kingdom',
+      genre: 'Fantasy',
+      views: '120k views',
+      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80',
+      description: 'A forgotten golden citadel surrounded by crystalline falls, ancient dragons, and lost sun stones.',
     },
     {
-      q: 'Can I use my own Gemini or OpenAI API keys?',
-      a: 'Yes! StoryVerse AI comes equipped with our proprietary Contextual Story Engine out of the box in Demo Mode. If you prefer live LLM generation, you can input your own Google Gemini or OpenAI API key in Account Settings to enjoy unlimited live completions.',
+      id: 'cyber-nova',
+      name: 'Cyber Nova',
+      genre: 'Sci-Fi',
+      views: '88k views',
+      image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=80',
+      description: 'Vertical neon arcology where neural hackers and rogue quantum AIs fight across the Sub-Grid.',
     },
     {
-      q: 'Can I export my finished stories to PDF and DOCX?',
-      a: 'Yes. StoryVerse AI supports clean exports to formatted Microsoft Word (.docx/.doc), Markdown (.md), JSON lore archives, and print-ready PDF layouts.',
-    },
-    {
-      q: 'How do interactive branching stories work?',
-      a: 'With our node-based story builder, you create decision points where readers choose paths. You can preview the choices as an interactive reader game or publish it for the StoryVerse community to play.',
-    },
-    {
-      q: 'Are my fictional universes private or public?',
-      a: 'You have complete control. All projects are private by default. You can choose to publish any story, universe, or interactive playthrough to the public Community Discovery tab at any time.',
+      id: 'mystic-realms',
+      name: 'Mystic Realms',
+      genre: 'Adventure',
+      views: '74k views',
+      image: 'https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?w=500&auto=format&fit=crop&q=80',
+      description: 'Ancient whispering redwood sanctuaries alive with spirits of fallen titans and hidden shrines.',
     },
   ];
 
   return (
-    <div className="min-h-screen bg-canvas dark:bg-darkCanvas text-brandText dark:text-darkText transition-colors duration-200">
+    <div className="min-h-screen bg-[#0A0718] text-[#F3F4F8] font-sans relative overflow-x-hidden selection:bg-[#7549E8]/30 selection:text-white">
       {/* Top Navbar */}
       <Navbar onOpenAuth={handleOpenAuth} onNavigate={(tab) => {
         if (tab === 'dashboard') onEnterApp();
+        if (tab === 'features') {
+          const el = document.getElementById('features-section');
+          el?.scrollIntoView({ behavior: 'smooth' });
+        }
+        if (tab === 'explore') {
+          const el = document.getElementById('cards-section');
+          el?.scrollIntoView({ behavior: 'smooth' });
+        }
+        if (tab === 'pricing') setPricingModal(true);
+        if (tab === 'about') {
+          const el = document.getElementById('footer-section');
+          el?.scrollIntoView({ behavior: 'smooth' });
+        }
       }} />
 
-      {/* HERO SECTION */}
-      <section id="hero" className="relative pt-36 pb-20 md:pt-44 md:pb-32 overflow-hidden">
-        {/* Ambient Gradient Blobs */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-electric/15 dark:bg-electric/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-amberGold/10 dark:bg-amberGold/15 rounded-full blur-3xl pointer-events-none" />
+      {/* ============================================================ */}
+      {/* HERO SECTION WITH FANTASY CASTLE & ADVENTURER BACKGROUND ART */}
+      {/* ============================================================ */}
+      <section
+        id="hero"
+        className="relative pt-24 pb-8 sm:pt-28 sm:pb-12 min-h-screen flex flex-col justify-between overflow-hidden"
+        style={{
+          backgroundImage: `url('/hero-art.jpg')`,
+          backgroundPosition: 'right 25% top 15%',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Cinematic Translucent Gradient Overlay on Left to maximize text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080614] via-[#0A0819]/90 md:via-[#0A0819]/75 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080614] via-transparent to-transparent pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-primary/20 text-xs font-bold text-primary dark:text-primary-300 mb-8 shadow-sm animate-fade-in">
-            <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-            <span>Introducing the Connected Universe Engine</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            <span className="text-gray-500 font-medium">SaaS 2.0</span>
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-10 sm:pt-14">
+          <div className="max-w-2xl lg:max-w-3xl space-y-6">
+            {/* Top Badge matching screenshot */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1A1435]/80 backdrop-blur-md border border-[#8B5CF6]/40 text-[#D8B4FE] text-xs font-semibold shadow-[0_0_20px_rgba(139,92,246,0.3)] animate-fade-in">
+              <Sparkles className="w-3.5 h-3.5 text-[#C084FC] animate-pulse" />
+              <span>The Next-Gen AI Storytelling Platform</span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-black text-white leading-[1.08] tracking-tight">
+              Your Imagination<br />
+              Deserves Its Own{' '}
+              <span className="bg-gradient-to-r from-[#20A5D8] via-[#B862F8] to-[#F472B6] bg-clip-text text-transparent">
+                Universe.
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-gray-200/90 font-normal leading-relaxed max-w-xl">
+              Create interconnected worlds, unforgettable characters and immersive stories with the power of AI.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <button
+                onClick={() => handleOpenAuth('register')}
+                className="px-7 py-3.5 rounded-full bg-gradient-to-r from-[#7549E8] via-[#8B5CF6] to-[#A855F7] text-white font-extrabold text-sm shadow-[0_0_30px_rgba(117,73,232,0.6)] hover:scale-105 hover:shadow-[0_0_40px_rgba(117,73,232,0.8)] transition-all flex items-center gap-2 group"
+              >
+                <Rocket className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+                <span>Start Creating</span>
+                <ArrowRight className="w-4 h-4 ml-0.5" />
+              </button>
+
+              <button
+                onClick={() => {
+                  const el = document.getElementById('cards-section');
+                  el?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-6 py-3.5 rounded-full bg-[#130F26]/70 hover:bg-[#130F26]/90 border border-white/20 text-white font-bold text-sm backdrop-blur-md transition-all flex items-center gap-2 hover:border-white/40"
+              >
+                <Play className="w-4 h-4 fill-white text-white" />
+                <span>Explore Features</span>
+              </button>
+            </div>
           </div>
+        </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-5xl mx-auto leading-[1.15] mb-6">
-            Your Imagination Deserves Its{' '}
-            <span className="bg-gradient-to-r from-primary via-electric to-amberGold bg-clip-text text-transparent">
-              Own Universe.
-            </span>
-          </h1>
+        {/* FLOATING FEATURE DOCK (Center Horizontal Capsule Bar) */}
+        <div id="features-section" className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full mt-12 sm:mt-16 mb-4">
+          <div className="rounded-2xl sm:rounded-full bg-[#0D0A20]/80 backdrop-blur-xl border border-white/10 p-2 shadow-2xl flex items-center justify-between overflow-x-auto gap-2 no-scrollbar">
+            {featureDockItems.map((item, index) => {
+              const Icon = item.icon;
+              const isActive = activeFeatureIndex === index;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setActiveFeatureIndex(index);
+                    handleOpenAuth('login');
+                  }}
+                  className={`flex items-center gap-2.5 px-4 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-300 ${
+                    item.highlight
+                      ? 'bg-gradient-to-r from-[#7549E8]/30 to-[#F59E0B]/20 border border-[#F59E0B]/60 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.3)]'
+                      : isActive
+                      ? 'bg-white/15 text-white border border-white/20 shadow-md'
+                      : 'text-gray-300 hover:text-white hover:bg-white/5 border border-transparent'
+                  }`}
+                >
+                  <div
+                    className="w-6 h-6 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: `${item.color}25` }}
+                  >
+                    <Icon className="w-3.5 h-3.5" style={{ color: item.color }} />
+                  </div>
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-          {/* Description */}
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
-            Create interconnected worlds, unforgettable characters and immersive stories with the power of AI. One unified workspace where lore, timelines, and narratives never contradict.
-          </p>
+      {/* ============================================================ */}
+      {/* THREE GLASSMORPHIC BOTTOM PANELS ROW (MATCHING SCREENSHOT)   */}
+      {/* ============================================================ */}
+      <section id="cards-section" className="relative z-10 py-6 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+          {/* ---------------------------------------------------- */}
+          {/* PANEL 1: HOW IT WORKS?                              */}
+          {/* ---------------------------------------------------- */}
+          <div className="rounded-3xl bg-[#0F0B24]/90 backdrop-blur-xl border border-white/10 p-6 flex flex-col justify-between shadow-2xl hover:border-white/20 transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="text-lg font-bold text-white tracking-tight">How It Works?</h3>
+                <button
+                  onClick={() => setHowItWorksModal(true)}
+                  className="text-xs font-semibold text-[#A855F7] hover:text-[#C084FC] flex items-center gap-1 transition-colors"
+                >
+                  <span>View Process</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+              <p className="text-xs text-gray-400 mb-6">
+                Turn your ideas into epic stories in just 3 simple steps.
+              </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+              {/* 3 Circular Steps Connected with Dotted Flow */}
+              <div className="flex items-center justify-between gap-2 pt-2">
+                {/* Step 1 */}
+                <div className="flex flex-col items-center text-center flex-1">
+                  <div className="relative mb-3">
+                    <div className="w-14 h-14 rounded-full bg-[#7549E8]/20 border border-[#7549E8] flex items-center justify-center text-white shadow-[0_0_15px_rgba(117,73,232,0.4)]">
+                      <Wand2 className="w-6 h-6 text-[#C084FC]" />
+                    </div>
+                    <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#7549E8] text-white text-[10px] font-extrabold flex items-center justify-center ring-2 ring-[#0F0B24]">
+                      1
+                    </span>
+                  </div>
+                  <span className="text-xs font-bold text-gray-200 leading-tight">
+                    Create Your<br />Universe
+                  </span>
+                </div>
+
+                {/* Connecting Dotted Arrow 1 */}
+                <div className="text-gray-500 font-bold mb-6">&rarr;</div>
+
+                {/* Step 2 */}
+                <div className="flex flex-col items-center text-center flex-1">
+                  <div className="relative mb-3">
+                    <div className="w-14 h-14 rounded-full bg-[#20A5D8]/20 border border-[#20A5D8] flex items-center justify-center text-white shadow-[0_0_15px_rgba(32,165,216,0.4)]">
+                      <Users className="w-6 h-6 text-[#38BDF8]" />
+                    </div>
+                    <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#20A5D8] text-white text-[10px] font-extrabold flex items-center justify-center ring-2 ring-[#0F0B24]">
+                      2
+                    </span>
+                  </div>
+                  <span className="text-xs font-bold text-gray-200 leading-tight">
+                    Develop Your<br />Characters
+                  </span>
+                </div>
+
+                {/* Connecting Dotted Arrow 2 */}
+                <div className="text-gray-500 font-bold mb-6">&rarr;</div>
+
+                {/* Step 3 */}
+                <div className="flex flex-col items-center text-center flex-1">
+                  <div className="relative mb-3">
+                    <div className="w-14 h-14 rounded-full bg-[#EC4899]/20 border border-[#EC4899] flex items-center justify-center text-white shadow-[0_0_15px_rgba(236,72,153,0.4)]">
+                      <BookOpen className="w-6 h-6 text-[#F472B6]" />
+                    </div>
+                    <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#EC4899] text-white text-[10px] font-extrabold flex items-center justify-center ring-2 ring-[#0F0B24]">
+                      3
+                    </span>
+                  </div>
+                  <span className="text-xs font-bold text-gray-200 leading-tight">
+                    Generate Your<br />Stories
+                  </span>
+                </div>
+              </div>
+            </div>
+
             <button
               onClick={() => handleOpenAuth('register')}
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-primary via-primary-600 to-electric hover:from-primary-600 hover:to-electric text-white font-extrabold text-base shadow-glow-primary hover:scale-[1.02] transition-all flex items-center justify-center gap-3"
+              className="mt-6 w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-300 hover:text-white transition-all text-center"
             >
-              <span>Start Creating Free</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => {
-                const el = document.getElementById('features');
-                el?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl glass-panel hover:bg-white dark:hover:bg-darkCard font-bold text-base text-gray-700 dark:text-gray-200 transition-all flex items-center justify-center gap-2 border border-gray-200 dark:border-gray-800"
-            >
-              <Compass className="w-5 h-5 text-electric" />
-              <span>Explore Features</span>
+              Start 3-Step Wizard &rarr;
             </button>
           </div>
 
-          {/* Storytelling-Themed Visual Showcase: Interconnected Universe Hub */}
-          <div className="relative max-w-5xl mx-auto rounded-3xl p-2 sm:p-4 glass-panel border border-primary/20 shadow-2xl overflow-hidden group">
-            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#121224] to-[#1E1B38] p-6 sm:p-10 text-left border border-white/10">
-              {/* Header Bar of the Showcase */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="flex space-x-1.5">
-                    <span className="w-3 h-3 rounded-full bg-rose-500/80" />
-                    <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-                    <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                  </div>
-                  <span className="text-xs font-mono text-gray-400">storyverse://workspace/aethelgard-prime</span>
-                </div>
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/40 text-[11px] font-bold text-primary-300">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span>Connected Universe Engine Active</span>
-                </div>
+          {/* ---------------------------------------------------- */}
+          {/* PANEL 2: EXPLORE OUR UNIVERSES                      */}
+          {/* ---------------------------------------------------- */}
+          <div className="rounded-3xl bg-[#0F0B24]/90 backdrop-blur-xl border border-white/10 p-6 flex flex-col justify-between shadow-2xl hover:border-white/20 transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="text-lg font-bold text-white tracking-tight">Explore Our Universes</h3>
+                <button
+                  onClick={() => handleOpenAuth('login')}
+                  className="text-xs font-semibold text-[#A855F7] hover:text-[#C084FC] flex items-center gap-1 transition-colors"
+                >
+                  <span>View All</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
               </div>
+              <p className="text-xs text-gray-400 mb-4">
+                Discover amazing worlds created by our community.
+              </p>
 
-              {/* Visual Multi-Layer Nodes */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-                {/* Node 1: World Lore */}
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all">
-                  <div className="flex items-center gap-2.5 mb-3 text-primary-300">
-                    <Globe className="w-5 h-5" />
-                    <span className="text-xs font-bold uppercase tracking-wider">World Realm</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-1">Aethelgard High Realm</h3>
-                  <p className="text-xs text-gray-300 line-clamp-3 mb-4">
-                    Fractured twin moons Selene and Umbra bleed volatile aether crystals into mortal leylines.
-                  </p>
-                  <div className="flex items-center gap-1.5 text-[11px] text-primary-400 font-semibold">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                    <span>Aether Resonance Law Verified</span>
-                  </div>
-                </div>
-
-                {/* Node 2: Interconnected Characters */}
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-electric/50 transition-all">
-                  <div className="flex items-center gap-2.5 mb-3 text-electric">
-                    <Users className="w-5 h-5" />
-                    <span className="text-xs font-bold uppercase tracking-wider">Linked Characters</span>
-                  </div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <img
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
-                      alt="Prince Valen"
-                      className="w-9 h-9 rounded-xl object-cover ring-2 ring-electric/40"
-                    />
-                    <div>
-                      <h4 className="text-sm font-bold text-white">Prince Valen</h4>
-                      <span className="text-[10px] text-gray-400">Umbra Shard Host &bull; Protagonist</span>
+              {/* 3 Universe Mini Cards */}
+              <div className="grid grid-cols-3 gap-3">
+                {communityUniverses.map(uni => (
+                  <div
+                    key={uni.id}
+                    onClick={() => setSelectedUniverseModal(uni)}
+                    className="group relative rounded-2xl overflow-hidden border border-white/10 bg-[#161230] cursor-pointer hover:border-[#8B5CF6]/50 transition-all hover:scale-[1.02]"
+                  >
+                    <div className="h-20 w-full overflow-hidden relative">
+                      <img
+                        src={uni.image}
+                        alt={uni.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#161230] via-transparent to-transparent" />
+                    </div>
+                    <div className="p-2.5">
+                      <h4 className="text-xs font-bold text-white truncate group-hover:text-[#A855F7] transition-colors">
+                        {uni.name}
+                      </h4>
+                      <div className="text-[10px] text-gray-400 mt-0.5 truncate">
+                        {uni.genre} &bull; {uni.views}
+                      </div>
                     </div>
                   </div>
-                  <div className="text-xs text-gray-300 line-clamp-2 mb-3">
-                    Bears crystalline Vitreous Blight on left arm; allied with High Archivist Selyse.
-                  </div>
-                  <div className="flex items-center gap-1.5 text-[11px] text-electric font-semibold">
-                    <span>Active in 4 Chapters & 3 Dialogues</span>
-                  </div>
-                </div>
-
-                {/* Node 3: AI Story Studio Synthesis */}
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-amberGold/50 transition-all">
-                  <div className="flex items-center gap-2.5 mb-3 text-amberGold">
-                    <Feather className="w-5 h-5" />
-                    <span className="text-xs font-bold uppercase tracking-wider">AI Story Synthesis</span>
-                  </div>
-                  <div className="text-xs font-mono text-gray-300 bg-black/40 p-3 rounded-xl border border-white/5 mb-3 leading-relaxed">
-                    "Valen drew the umbral blade. The resonance hummed in harmony with the lunar tides of Thalor..."
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] text-gray-400 font-medium">
-                    <span>Auto-Saved 2s ago</span>
-                    <span className="text-emerald-400 font-bold">100% Canon Match</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* PLATFORM FEATURES SECTION */}
-      <section id="features" className="py-24 border-t border-gray-100 dark:border-gray-800/80 bg-white/50 dark:bg-darkCard/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">
-              Core Creative Architecture
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
-              Everything You Need to Build Endless Universes
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
-              A cohesive suite of intelligent creative tools, completely interconnected by our unified universe graph.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="p-8 rounded-3xl glass-panel hover:border-primary/40 hover:shadow-glow-primary transition-all group">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">
-                <Globe className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Connected Universe Engine</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                Our core differentiator. Define your magic systems, technological paradigms, factions, and cosmological laws once—and watch them automatically permeate every story, character arc, and dialogue.
-              </p>
-              <div className="text-xs font-bold text-primary flex items-center gap-1">
-                <span>Relational Knowledge System</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                ))}
               </div>
             </div>
 
-            {/* Feature 2 */}
-            <div className="p-8 rounded-3xl glass-panel hover:border-electric/40 hover:shadow-glow-electric transition-all group">
-              <div className="w-12 h-12 rounded-2xl bg-electric/10 text-electric flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">
-                <Compass className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">World Builder & Interactive Map</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                Design kingdoms, cities, planets, and civilizations. Define cultures, political regimes, and defense systems with an interactive drag-and-drop map to link borders and trading routes.
-              </p>
-              <div className="text-xs font-bold text-electric flex items-center gap-1">
-                <span>Interactive Visual Geography</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </div>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="p-8 rounded-3xl glass-panel hover:border-amberGold/40 hover:shadow-glow-amber transition-all group">
-              <div className="w-12 h-12 rounded-2xl bg-amberGold/10 text-amberGold flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">
-                <Users className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Character Lab & Relationship Graph</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                Craft multi-dimensional protagonists, mentors, and rivals. Track personality traits, motivations, psychological wounds, and explore visual relationship networks spanning family, rivals, and alliances.
-              </p>
-              <div className="text-xs font-bold text-amberGold flex items-center gap-1">
-                <span>Multi-Character Psychology</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </div>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="p-8 rounded-3xl glass-panel hover:border-primary/40 hover:shadow-glow-primary transition-all group">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">
-                <Feather className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">AI Story Studio & Creative Copilot</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                Write chapter-by-chapter with an AI novelist that strictly respects your established lore. Autosave drafts, adjust writing tones, inject organic plot twists, and export to DOCX or PDF.
-              </p>
-              <div className="text-xs font-bold text-primary flex items-center gap-1">
-                <span>Autosave & Full Export</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </div>
-            </div>
-
-            {/* Feature 5 */}
-            <div className="p-8 rounded-3xl glass-panel hover:border-emeraldGreen/40 hover:shadow-glow-emerald transition-all group">
-              <div className="w-12 h-12 rounded-2xl bg-emeraldGreen/10 text-emeraldGreen flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">
-                <Clock className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Timeline Manager & Paradox Auditor</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                Arrange historical events chronologically across fictional eras. Connect events to character lifespans and locations, with an automated continuity auditor that warns you of paradoxical discrepancies.
-              </p>
-              <div className="text-xs font-bold text-emeraldGreen flex items-center gap-1">
-                <span>Chronological Inconsistency Guard</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </div>
-            </div>
-
-            {/* Feature 6 */}
-            <div className="p-8 rounded-3xl glass-panel hover:border-electric/40 hover:shadow-glow-electric transition-all group">
-              <div className="w-12 h-12 rounded-2xl bg-electric/10 text-electric flex items-center justify-center font-bold mb-6 group-hover:scale-110 transition-transform">
-                <GitFork className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Interactive Branching Narratives</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                Build decision-based gamebooks with branching choice nodes and alternative endings. Test your interactive narratives directly in an immersive player preview mode and publish them for the community.
-              </p>
-              <div className="text-xs font-bold text-electric flex items-center gap-1">
-                <span>Visual Flow & Reader Mode</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS (3 Simple Steps) */}
-      <section className="py-24 border-t border-gray-100 dark:border-gray-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">
-              Effortless Creative Workflow
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
-              How It Works: From Concept to Universe
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
-              Three simple steps to transform your raw imagination into an interconnected creative franchise.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-            {/* Step 1 */}
-            <div className="p-8 rounded-3xl glass-panel relative border border-gray-200 dark:border-gray-800">
-              <div className="w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center font-black text-lg mb-6 shadow-glow-primary">
-                1
-              </div>
-              <h3 className="text-xl font-bold mb-3">Architect Your Universe Lore</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Choose your genre paradigm—high fantasy, cyberpunk sci-fi, mythology, or dystopian. Establish the physical and metaphysical rules of magic or science.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="p-8 rounded-3xl glass-panel relative border border-gray-200 dark:border-gray-800">
-              <div className="w-12 h-12 rounded-2xl bg-electric text-white flex items-center justify-center font-black text-lg mb-6 shadow-glow-electric">
-                2
-              </div>
-              <h3 className="text-xl font-bold mb-3">Populate Characters & Map</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Generate or handcraft compelling characters with clear goals, flaws, and relationship ties. Plot out cities, kingdoms, and historical era milestones on the timeline.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="p-8 rounded-3xl glass-panel relative border border-gray-200 dark:border-gray-800">
-              <div className="w-12 h-12 rounded-2xl bg-amberGold text-white flex items-center justify-center font-black text-lg mb-6 shadow-glow-amber">
-                3
-              </div>
-              <h3 className="text-xl font-bold mb-3">Unleash Stories & Choices</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Use the AI Story Studio to write chapter-by-chapter epics, simulate realistic character dialogues, or construct interactive branching gamebooks with multiple endings.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* EXAMPLE FICTIONAL UNIVERSES */}
-      <section id="explore" className="py-24 border-t border-gray-100 dark:border-gray-800/80 bg-white/50 dark:bg-darkCard/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">
-              Preloaded Creative Canvases
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
-              Explore Example Fictional Universes
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
-              Immerse yourself in rich, ready-to-write universes preloaded with established characters, locations, and storylines.
-            </p>
-          </div>
-
-          {/* Universe Tabs */}
-          <div className="flex justify-center gap-3 mb-10">
             <button
-              onClick={() => setActiveUniverseTab('aethelgard')}
-              className={`px-5 py-2.5 rounded-2xl text-xs font-bold transition-all ${
-                activeUniverseTab === 'aethelgard'
-                  ? 'bg-primary text-white shadow-glow-primary'
-                  : 'glass-panel text-gray-600 dark:text-gray-300'
-              }`}
+              onClick={() => handleOpenAuth('login')}
+              className="mt-6 w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-300 hover:text-white transition-all text-center"
             >
-              The Shattered Realm of Aethelgard (High Fantasy)
-            </button>
-            <button
-              onClick={() => setActiveUniverseTab('cyberia')}
-              className={`px-5 py-2.5 rounded-2xl text-xs font-bold transition-all ${
-                activeUniverseTab === 'cyberia'
-                  ? 'bg-electric text-white shadow-glow-electric'
-                  : 'glass-panel text-gray-600 dark:text-gray-300'
-              }`}
-            >
-              Neo-Cyberia 2184: The Sub-Grid (Cyberpunk Sci-Fi)
+              Browse 4,500+ Public Realmlists &rarr;
             </button>
           </div>
 
-          {/* Showcase Card */}
-          {activeUniverseTab === 'aethelgard' ? (
-            <div className="p-8 sm:p-12 rounded-3xl glass-panel border border-primary/20 shadow-xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 mb-4 inline-block">
-                  High Fantasy Canon
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold mb-3">
-                  The Shattered Realm of Aethelgard
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6">
-                  Three millennia ago, the Twin Moons fractured in orbit. Shards of luminescent aether-glass fell across the continents, giving birth to volatile runic sorcery, floating crystal spires, and deadly vitreous blights.
-                </p>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-3 text-xs font-semibold text-gray-700 dark:text-gray-200">
-                    <span className="w-2 h-2 rounded-full bg-primary" />
-                    <span>Key Characters: Prince Valen Shadowthorn, High Archivist Selyse, Korath</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-xs font-semibold text-gray-700 dark:text-gray-200">
-                    <span className="w-2 h-2 rounded-full bg-electric" />
-                    <span>Prime Locations: Citadel of Dawn, Sunken Spires of Thalor, Frostfall Peak</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-xs font-semibold text-gray-700 dark:text-gray-200">
-                    <span className="w-2 h-2 rounded-full bg-amberGold" />
-                    <span>Magic Law: Aetheric Resonance — casting demands spirit heat</span>
-                  </div>
-                </div>
+          {/* ---------------------------------------------------- */}
+          {/* PANEL 3: SIMPLE & FLEXIBLE PRICING                  */}
+          {/* ---------------------------------------------------- */}
+          <div className="rounded-3xl bg-[#0F0B24]/90 backdrop-blur-xl border border-white/10 p-6 flex flex-col justify-between shadow-2xl hover:border-white/20 transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="text-lg font-bold text-white tracking-tight">Simple & Flexible Pricing</h3>
                 <button
-                  onClick={() => handleOpenAuth('login')}
-                  className="px-6 py-3 rounded-xl bg-primary hover:bg-primary-600 text-white font-bold text-xs shadow-glow-primary transition-all flex items-center gap-2"
+                  onClick={() => setPricingModal(true)}
+                  className="text-xs font-semibold text-[#A855F7] hover:text-[#C084FC] flex items-center gap-1 transition-colors"
                 >
-                  <span>Enter Aethelgard Workspace</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>View All</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
-
-              <div className="rounded-2xl overflow-hidden bg-gradient-to-tr from-purple-900 to-indigo-950 p-6 text-white border border-white/10 shadow-inner">
-                <div className="text-xs font-mono text-purple-300 mb-2">// Active Story: Echoes of the Fractured Moon</div>
-                <h4 className="text-lg font-bold mb-3 font-serif">Chapter 1: The Vitreous Oath</h4>
-                <p className="text-xs text-gray-300 leading-relaxed font-serif italic mb-4">
-                  "The wind sweeping through the Whispering Hollows tasted of ozone and pulverized silver. Valen adjusted the heavy vambrace over his left arm, grimacing as the dark crystalline tendrils pulsed beneath his skin..."
-                </p>
-                <div className="flex items-center justify-between text-[11px] text-purple-300 pt-4 border-t border-white/10">
-                  <span>3 Interlinked Characters</span>
-                  <span>4 Recorded Eras</span>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="p-8 sm:p-12 rounded-3xl glass-panel border border-electric/20 shadow-xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-electric/10 text-electric border border-electric/20 mb-4 inline-block">
-                  Cyberpunk Sci-Fi Canon
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold mb-3">
-                  Neo-Cyberia 2184: The Sub-Grid
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-6">
-                  A three-hundred-level vertical arcology built over flooded northern ruins. Humanity shares neural subnetworks with emergent synthetic quantum intelligences while megacorps monopolize cortical stacks.
-                </p>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-3 text-xs font-semibold text-gray-700 dark:text-gray-200">
-                    <span className="w-2 h-2 rounded-full bg-electric" />
-                    <span>Key Characters: Kaelen Voss (Neural Hacker), Mara Jin (Street Ronin)</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-xs font-semibold text-gray-700 dark:text-gray-200">
-                    <span className="w-2 h-2 rounded-full bg-primary" />
-                    <span>Prime Locations: District 0 Skyline Monolith, Neon Alley Level -04</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-xs font-semibold text-gray-700 dark:text-gray-200">
-                    <span className="w-2 h-2 rounded-full bg-amberGold" />
-                    <span>Tech Law: Neural Synchronicity — 80%+ triggers lethal neural bleed</span>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleOpenAuth('login')}
-                  className="px-6 py-3 rounded-xl bg-electric hover:bg-electric-600 text-white font-bold text-xs shadow-glow-electric transition-all flex items-center gap-2"
-                >
-                  <span>Enter Neo-Cyberia Workspace</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-
-              <div className="rounded-2xl overflow-hidden bg-gradient-to-tr from-cyan-950 to-slate-900 p-6 text-white border border-white/10 shadow-inner">
-                <div className="text-xs font-mono text-cyan-300 mb-2">// Active Story: The Zero-Day Infiltration</div>
-                <h4 className="text-lg font-bold mb-3 font-mono">Mission Log: Level -04 Breach</h4>
-                <p className="text-xs text-gray-300 leading-relaxed font-mono mb-4">
-                  "Synthetic acid rain washed the neon billboards of Level -04. Kaelen jacked his neural bus directly into the optical feed, his thermal heatsinks humming as the security firewalls crumbled into telemetry noise..."
-                </p>
-                <div className="flex items-center justify-between text-[11px] text-cyan-300 pt-4 border-t border-white/10">
-                  <span>2 Augmentation Profiles</span>
-                  <span>1 Neural Protocol Law</span>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* CREATOR TESTIMONIALS (Clearly marked illustrative as required) */}
-      <section className="py-24 border-t border-gray-100 dark:border-gray-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">
-              Creator Community Voices
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-2">
-              Loved by Authors & Worldbuilders
-            </h2>
-            <div className="inline-block px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-semibold mt-2">
-              Note: Illustrative user testimonials representing creator feedback
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 rounded-3xl glass-panel border border-gray-200 dark:border-gray-800 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-1 text-amberGold mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amberGold" />
-                  ))}
-                </div>
-                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic mb-6">
-                  "StoryVerse AI solved the biggest issue I faced with other tools: continuity. When I write chapter 8, the AI remembers that Korath lost his left shoulder plate in chapter 2. It’s like having an encyclopedic continuity editor sitting right beside me."
-                </p>
-              </div>
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-800">
-                <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
-                  alt="Aria Chen"
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="text-xs font-bold">Aria Chen</h4>
-                  <p className="text-[11px] text-gray-500">Fantasy Novelist & Worldbuilder</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-8 rounded-3xl glass-panel border border-gray-200 dark:border-gray-800 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-1 text-amberGold mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amberGold" />
-                  ))}
-                </div>
-                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic mb-6">
-                  "The Dialogue Generator alone is worth the subscription. Selecting two characters with opposing moral codes and a tense location produces realistic debates that feel authentically drawn from their backstories."
-                </p>
-              </div>
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-800">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
-                  alt="Marcus Brody"
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="text-xs font-bold">Marcus Brody</h4>
-                  <p className="text-[11px] text-gray-500">Narrative Game Designer</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-8 rounded-3xl glass-panel border border-gray-200 dark:border-gray-800 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-1 text-amberGold mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amberGold" />
-                  ))}
-                </div>
-                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic mb-6">
-                  "Building branching storylines with the Interactive Story node editor is so intuitive. We plotted a 12-branch sci-fi gamebook in one weekend and published it directly to our reader community."
-                </p>
-              </div>
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-800">
-                <img
-                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150"
-                  alt="Devon Vance"
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="text-xs font-bold">Devon Vance</h4>
-                  <p className="text-[11px] text-gray-500">Interactive Fiction Author</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* PRICING PLANS */}
-      <section id="pricing" className="py-24 border-t border-gray-100 dark:border-gray-800/80 bg-white/50 dark:bg-darkCard/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">
-              Transparent SaaS Pricing
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
-              Designed for Solo Authors & Creative Studios
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
-              Start free today. Scale up as your fictional multiverse expands.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-            {/* Plan 1: Explorer */}
-            <div className="p-8 rounded-3xl glass-panel border border-gray-200 dark:border-gray-800 flex flex-col justify-between">
-              <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Explorer</div>
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-4xl font-extrabold">₹0</span>
-                  <span className="text-xs text-gray-500">/ forever free</span>
-                </div>
-                <p className="text-xs text-gray-500 mb-6">
-                  Perfect for hobbyists and students taking their first steps in worldbuilding.
-                </p>
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-emeraldGreen flex-shrink-0" />
-                    <span>150 Starter AI Credits</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-emeraldGreen flex-shrink-0" />
-                    <span>Up to 3 Fictional Universes</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-emeraldGreen flex-shrink-0" />
-                    <span>Basic Character Lab & Profiles</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-emeraldGreen flex-shrink-0" />
-                    <span>AI Story Studio & Drafts</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-emeraldGreen flex-shrink-0" />
-                    <span>Community Access & Publishing</span>
-                  </div>
-                </div>
-              </div>
-              <button
-                onClick={() => handleOpenAuth('register')}
-                className="w-full py-3 rounded-xl border border-gray-300 dark:border-gray-700 font-bold text-xs hover:border-primary hover:text-primary transition-all"
-              >
-                Get Started Free
-              </button>
-            </div>
-
-            {/* Plan 2: Creator (Highlighted) */}
-            <div className="p-8 rounded-3xl glass-panel border-2 border-primary shadow-glow-primary relative flex flex-col justify-between">
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-primary text-white text-[10px] font-extrabold uppercase tracking-widest shadow-md">
-                Most Popular for Novelists
-              </div>
-              <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-primary mb-2">Creator</div>
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-4xl font-extrabold text-primary">₹299</span>
-                  <span className="text-xs text-gray-500">/ month</span>
-                </div>
-                <p className="text-xs text-gray-500 mb-6">
-                  For serious authors, novelists, and screenwriters creating expansive universes.
-                </p>
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800 dark:text-gray-200">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>1,000 AI Credits per month</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800 dark:text-gray-200">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Unlimited Universes & Characters</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800 dark:text-gray-200">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Advanced World Builder with Map Links</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800 dark:text-gray-200">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Visual Character Relationship Graphs</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800 dark:text-gray-200">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Dialogue Generator & Script Workspace</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800 dark:text-gray-200">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Interactive Branching Story Builder</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs font-semibold text-gray-800 dark:text-gray-200">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span>Full Exports (DOCX, PDF, Markdown)</span>
-                  </div>
-                </div>
-              </div>
-              <button
-                onClick={() => handleOpenAuth('register')}
-                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-extrabold text-xs shadow-glow-primary transition-all"
-              >
-                Upgrade to Creator
-              </button>
-            </div>
-
-            {/* Plan 3: Studio */}
-            <div className="p-8 rounded-3xl glass-panel border border-gray-200 dark:border-gray-800 flex flex-col justify-between">
-              <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-electric mb-2">Studio</div>
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-4xl font-extrabold">₹999</span>
-                  <span className="text-xs text-gray-500">/ month</span>
-                </div>
-                <p className="text-xs text-gray-500 mb-6">
-                  For creative teams, game studios, writing rooms, and production houses.
-                </p>
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-electric flex-shrink-0" />
-                    <span>5,000 AI Credits per month</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-electric flex-shrink-0" />
-                    <span>All Creator Features Included</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-electric flex-shrink-0" />
-                    <span>Multi-Creator Collaborative Workspaces</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-electric flex-shrink-0" />
-                    <span>Custom LLM API Key Integration</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-electric flex-shrink-0" />
-                    <span>Timeline Paradox & Continuity Auditor</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs text-gray-700 dark:text-gray-300">
-                    <Check className="w-4 h-4 text-electric flex-shrink-0" />
-                    <span>Priority Fast-Lane Generation & Support</span>
-                  </div>
-                </div>
-              </div>
-              <button
-                onClick={() => handleOpenAuth('register')}
-                className="w-full py-3 rounded-xl border border-electric text-electric hover:bg-electric hover:text-white font-bold text-xs transition-all"
-              >
-                Choose Studio
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ SECTION */}
-      <section className="py-24 border-t border-gray-100 dark:border-gray-800/80">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-3 block">
-              Got Questions?
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-              Everything you need to know about the Connected Universe Engine and platform policies.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl glass-panel border border-gray-200 dark:border-gray-800 overflow-hidden"
-              >
-                <button
-                  onClick={() => setFaqOpenIndex(faqOpenIndex === idx ? null : idx)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-gray-900 dark:text-white"
-                >
-                  <span>{faq.q}</span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-primary transition-transform duration-200 flex-shrink-0 ${
-                      faqOpenIndex === idx ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                {faqOpenIndex === idx && (
-                  <div className="px-5 pb-5 text-xs text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-800/60 pt-3">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer id="about" className="py-16 border-t border-gray-200 dark:border-gray-800/80 bg-white/80 dark:bg-[#0E0E18]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-            <div className="md:col-span-1">
-              <div className="flex items-center gap-2.5 mb-3">
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary to-electric flex items-center justify-center text-white">
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <span className="font-extrabold text-lg bg-gradient-to-r from-primary to-electric bg-clip-text text-transparent">
-                  STORYVERSE AI
-                </span>
-              </div>
-              <p className="text-xs text-gray-500 leading-relaxed mb-4">
-                "Imagine Worlds. Create Stories. Build Universes."
-                The intelligent world-building and narrative platform for creative authors and visionaries.
+              <p className="text-xs text-gray-400 mb-4">
+                Choose the plan that fits your creativity.
               </p>
-              <div className="text-[11px] text-gray-400">
-                &copy; {new Date().getFullYear()} StoryVerse AI Inc. All rights reserved.
-              </div>
-            </div>
 
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-800 dark:text-gray-200 mb-4">
-                Platform
-              </h4>
-              <ul className="space-y-2 text-xs text-gray-500 dark:text-gray-400 font-medium">
-                <li><a href="#features" className="hover:text-primary">Connected Universe Engine</a></li>
-                <li><a href="#features" className="hover:text-primary">World Builder & Maps</a></li>
-                <li><a href="#features" className="hover:text-primary">Character Lab</a></li>
-                <li><a href="#features" className="hover:text-primary">AI Story Studio</a></li>
-                <li><a href="#features" className="hover:text-primary">Interactive Stories</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-800 dark:text-gray-200 mb-4">
-                Community & Showcase
-              </h4>
-              <ul className="space-y-2 text-xs text-gray-500 dark:text-gray-400 font-medium">
-                <li><a href="#explore" className="hover:text-primary">The Shattered Realm</a></li>
-                <li><a href="#explore" className="hover:text-primary">Neo-Cyberia 2184</a></li>
-                <li><button onClick={() => handleOpenAuth('login')} className="hover:text-primary">Creator Profiles</button></li>
-                <li><button onClick={() => handleOpenAuth('login')} className="hover:text-primary">Public Stories Feed</button></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-800 dark:text-gray-200 mb-4">
-                Legal & Governance
-              </h4>
-              <ul className="space-y-2 text-xs text-gray-500 dark:text-gray-400 font-medium">
-                <li>
-                  <button onClick={() => setLegalModal('terms')} className="hover:text-primary text-left">
-                    Terms of Service
+              {/* 3 Pricing Columns */}
+              <div className="grid grid-cols-3 gap-2.5 pt-1">
+                {/* Explorer */}
+                <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center flex flex-col justify-between">
+                  <div>
+                    <div className="text-[11px] font-bold text-gray-300">Explorer</div>
+                    <div className="text-[9px] text-gray-400 mt-0.5">Perfect for beginners</div>
+                    <div className="text-sm font-extrabold text-white mt-2">Free</div>
+                  </div>
+                  <button
+                    onClick={() => handleOpenAuth('register')}
+                    className="mt-3 w-full py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[10px] font-bold transition-all"
+                  >
+                    Get Started
                   </button>
-                </li>
-                <li>
-                  <button onClick={() => setLegalModal('privacy')} className="hover:text-primary text-left">
-                    Privacy Policy & IP Rights
-                  </button>
-                </li>
-                <li>
-                  <span className="text-[11px] text-gray-400">
-                    Creators retain 100% intellectual property ownership of all generated universe lore.
+                </div>
+
+                {/* Creator (Highlighted) */}
+                <div className="p-3 rounded-2xl bg-gradient-to-b from-[#7549E8]/30 to-[#1F173D] border border-[#A855F7] text-center relative flex flex-col justify-between shadow-[0_0_15px_rgba(117,73,232,0.3)]">
+                  <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-[#F59E0B] text-black text-[8px] font-black uppercase tracking-wider shadow">
+                    Most Popular
                   </span>
-                </li>
-              </ul>
+                  <div>
+                    <div className="text-[11px] font-bold text-[#E9D5FF]">Creator</div>
+                    <div className="text-[9px] text-gray-300 mt-0.5">For passionate writers</div>
+                    <div className="text-sm font-extrabold text-white mt-2">
+                      ₹299<span className="text-[9px] font-normal text-gray-400">/month</span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => handleOpenAuth('register')}
+                    className="mt-3 w-full py-1.5 rounded-lg bg-gradient-to-r from-[#8A4BF3] to-[#A855F7] hover:from-[#9333EA] hover:to-[#B862F8] text-white text-[10px] font-bold shadow transition-all"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+
+                {/* Studio */}
+                <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center flex flex-col justify-between">
+                  <div>
+                    <div className="text-[11px] font-bold text-gray-300">Studio</div>
+                    <div className="text-[9px] text-gray-400 mt-0.5">For professional creators</div>
+                    <div className="text-sm font-extrabold text-white mt-2">
+                      ₹999<span className="text-[9px] font-normal text-gray-400">/month</span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => handleOpenAuth('register')}
+                    className="mt-3 w-full py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[10px] font-bold transition-all"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </div>
             </div>
+
+            <div className="text-[11px] text-gray-400 text-center mt-4">
+              All plans include complete commercial usage rights &amp; lore retention.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* FOOTER BAR (MATCHING SCREENSHOT)                             */}
+      {/* ============================================================ */}
+      <footer id="footer-section" className="relative z-10 border-t border-white/10 bg-[#080614] py-8 mt-12">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-6">
+          {/* Left Community Notice */}
+          <div className="text-center lg:text-left">
+            <h4 className="text-xs font-bold text-white tracking-wide">
+              Join the StoryVerse Community
+            </h4>
+            <p className="text-[11px] text-gray-400 mt-0.5">
+              Be part of a growing community of dreamers and storytellers.
+            </p>
+          </div>
+
+          {/* Center: Email Subscription Input Pill */}
+          <form
+            onSubmit={handleSubscribeNewsletter}
+            className="flex items-center rounded-full bg-[#130F26] border border-white/15 p-1 w-full max-w-md shadow-inner"
+          >
+            <input
+              type="email"
+              value={newsletterEmail}
+              onChange={(e) => setNewsletterEmail(e.target.value)}
+              placeholder="Enter your email address"
+              className="bg-transparent px-4 py-2 text-xs text-white placeholder-gray-500 focus:outline-none flex-1"
+            />
+            <button
+              type="submit"
+              className="px-5 py-2 rounded-full bg-gradient-to-r from-[#7549E8] to-[#9333EA] text-white text-xs font-bold shadow-[0_0_15px_rgba(117,73,232,0.5)] hover:scale-105 transition-all"
+            >
+              Subscribe
+            </button>
+          </form>
+
+          {/* Social Icons matching screenshot */}
+          <div className="flex items-center gap-4 text-gray-400">
+            {/* Discord */}
+            <a href="https://discord.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" title="Discord">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            </a>
+            {/* YouTube */}
+            <a href="https://youtube.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" title="YouTube">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            {/* GitHub */}
+            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" title="GitHub">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            {/* X / Twitter */}
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" title="X">
+              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            {/* LinkedIn */}
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" title="LinkedIn">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+
+          {/* Right Cursive Signature Slogan matching screenshot */}
+          <div className="font-script text-xl sm:text-2xl text-purple-200/90 font-bold tracking-wide italic">
+            Dream. Create. Explore.
           </div>
         </div>
       </footer>
@@ -869,25 +514,163 @@ export default function LandingPage({ onEnterApp }) {
         onSuccess={onEnterApp}
       />
 
-      {/* Legal Modal (Terms / Privacy) */}
-      {legalModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="relative w-full max-w-lg bg-white dark:bg-[#171727] rounded-3xl p-6 shadow-2xl border border-gray-100 dark:border-gray-800">
-            <h3 className="text-lg font-bold mb-3">
-              {legalModal === 'terms' ? 'Terms of Service' : 'Privacy Policy & Intellectual Property'}
-            </h3>
-            <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-              {legalModal === 'terms'
-                ? 'Welcome to StoryVerse AI. By utilizing our platform, you agree to create respectful, original content. You retain 100% ownership of your universes, characters, and storylines. We never use your private lore to train public models without your explicit consent.'
-                : 'Your privacy is paramount. All universe details, drafts, and characters remain strictly confidential and bound to your encrypted account session. You have the right to export or permanently purge your account at any time.'}
+      {/* Universe Preview Modal */}
+      {selectedUniverseModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fade-in">
+          <div className="relative w-full max-w-lg rounded-3xl bg-[#130F26] border border-white/10 p-6 shadow-2xl text-white">
+            <button
+              onClick={() => setSelectedUniverseModal(null)}
+              className="absolute top-5 right-5 p-2 rounded-xl text-gray-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <img
+              src={selectedUniverseModal.image}
+              alt={selectedUniverseModal.name}
+              className="w-full h-48 object-cover rounded-2xl mb-4"
+            />
+            <div className="flex items-center gap-2 mb-2">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#7549E8]/20 text-[#C084FC]">
+                {selectedUniverseModal.genre}
+              </span>
+              <span className="text-xs text-gray-400">{selectedUniverseModal.views}</span>
+            </div>
+            <h3 className="text-xl font-bold mb-2">{selectedUniverseModal.name}</h3>
+            <p className="text-xs text-gray-300 leading-relaxed mb-6">
+              {selectedUniverseModal.description}
             </p>
-            <div className="flex justify-end">
+            <div className="flex justify-end gap-3">
               <button
-                onClick={() => setLegalModal(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-primary text-white"
+                onClick={() => setSelectedUniverseModal(null)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 hover:text-white"
               >
-                Understood
+                Close
               </button>
+              <button
+                onClick={() => {
+                  setSelectedUniverseModal(null);
+                  handleOpenAuth('register');
+                }}
+                className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#7549E8] to-[#9333EA] text-white text-xs font-bold shadow-lg"
+              >
+                Enter Universe
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Detailed Pricing Modal */}
+      {pricingModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fade-in">
+          <div className="relative w-full max-w-4xl rounded-3xl bg-[#130F26] border border-white/10 p-6 sm:p-8 shadow-2xl text-white max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setPricingModal(false)}
+              className="absolute top-5 right-5 p-2 rounded-xl text-gray-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <h3 className="text-2xl font-bold text-center mb-2">Flexible Creator Plans</h3>
+            <p className="text-xs text-gray-400 text-center mb-8">Scale your fictional multiverse with generous monthly AI credits.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                <div>
+                  <h4 className="font-bold text-base mb-1">Explorer</h4>
+                  <div className="text-3xl font-black mb-4">₹0</div>
+                  <ul className="text-xs space-y-2 text-gray-300">
+                    <li>✓ 150 AI Generation Credits</li>
+                    <li>✓ Up to 3 Universes</li>
+                    <li>✓ Standard Character Lab</li>
+                    <li>✓ Community Discovery</li>
+                  </ul>
+                </div>
+                <button
+                  onClick={() => {
+                    setPricingModal(false);
+                    handleOpenAuth('register');
+                  }}
+                  className="mt-6 w-full py-2.5 rounded-xl bg-white/10 font-bold text-xs hover:bg-white/20"
+                >
+                  Get Started Free
+                </button>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-gradient-to-b from-[#7549E8]/40 to-[#1F173D] border-2 border-[#A855F7] flex flex-col justify-between shadow-[0_0_25px_rgba(117,73,232,0.4)]">
+                <div>
+                  <div className="text-[10px] uppercase font-bold text-[#F59E0B] tracking-wider mb-1">Most Popular</div>
+                  <h4 className="font-bold text-base mb-1">Creator</h4>
+                  <div className="text-3xl font-black mb-4">₹299 <span className="text-xs font-normal text-gray-400">/mo</span></div>
+                  <ul className="text-xs space-y-2 text-gray-200">
+                    <li>✓ 1,000 AI Credits/month</li>
+                    <li>✓ Unlimited Universes & Characters</li>
+                    <li>✓ Visual Character Relationship Graph</li>
+                    <li>✓ Interactive Branching Stories</li>
+                    <li>✓ DOCX, PDF, and Markdown Exports</li>
+                  </ul>
+                </div>
+                <button
+                  onClick={() => {
+                    setPricingModal(false);
+                    handleOpenAuth('register');
+                  }}
+                  className="mt-6 w-full py-2.5 rounded-xl bg-gradient-to-r from-[#8A4BF3] to-[#A855F7] font-bold text-xs text-white shadow-lg"
+                >
+                  Subscribe to Creator
+                </button>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                <div>
+                  <h4 className="font-bold text-base mb-1">Studio</h4>
+                  <div className="text-3xl font-black mb-4">₹999 <span className="text-xs font-normal text-gray-400">/mo</span></div>
+                  <ul className="text-xs space-y-2 text-gray-300">
+                    <li>✓ 5,000 AI Credits/month</li>
+                    <li>✓ Collaborative Workspaces</li>
+                    <li>✓ Custom Gemini / OpenAI API Keys</li>
+                    <li>✓ Timeline Paradox Auditor</li>
+                    <li>✓ Priority Fast-Lane Generation</li>
+                  </ul>
+                </div>
+                <button
+                  onClick={() => {
+                    setPricingModal(false);
+                    handleOpenAuth('register');
+                  }}
+                  className="mt-6 w-full py-2.5 rounded-xl bg-white/10 font-bold text-xs hover:bg-white/20"
+                >
+                  Choose Studio
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* How It Works Modal */}
+      {howItWorksModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fade-in">
+          <div className="relative w-full max-w-lg rounded-3xl bg-[#130F26] border border-white/10 p-6 sm:p-8 shadow-2xl text-white">
+            <button
+              onClick={() => setHowItWorksModal(false)}
+              className="absolute top-5 right-5 p-2 rounded-xl text-gray-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <h3 className="text-xl font-bold mb-4">The 3-Step Creative Process</h3>
+            <div className="space-y-4 text-xs leading-relaxed text-gray-300">
+              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                <strong className="text-white block text-sm mb-1">1. Create Your Universe</strong>
+                Establish your world's metaphysical laws, technology levels, celestial cosmology, and geographic landmarks.
+              </div>
+              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                <strong className="text-white block text-sm mb-1">2. Develop Your Characters</strong>
+                Craft protagonists, mentors, and rivals with motivations and visual relationship webs.
+              </div>
+              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                <strong className="text-white block text-sm mb-1">3. Generate Your Stories</strong>
+                Write chapters or build decision-based branching narratives that automatically adhere to your established canon.
+              </div>
             </div>
           </div>
         </div>

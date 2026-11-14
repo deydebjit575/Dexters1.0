@@ -15,6 +15,22 @@
       "preferredAIModel": "auto",
       "createdAt": "2026-11-14T16:51:00.772Z",
       "updatedAt": "2026-11-14T17:06:00.271Z"
+    },
+    {
+      "id": "user_8e67e78cde",
+      "createdAt": "2026-11-14T17:09:33.856Z",
+      "name": "Srijeet Dey",
+      "penName": "Srijeet Dey",
+      "email": "deydebjit575@gmail.com",
+      "passwordHash": "$2a$10$8WzYs33eprEHf6vkiSz9vuIxVg5g.JKl7jZe/.zNsFEGNYKioi7gW",
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=Srijeet%20Dey",
+      "bio": "New explorer in the StoryVerse. Ready to forge uncharted fictional realms.",
+      "plan": "explorer",
+      "credits": 112,
+      "maxCredits": 200,
+      "apiKey": "",
+      "preferredAIModel": "auto",
+      "updatedAt": "2026-11-14T17:11:28.300Z"
     }
   ],
   "universes": [
@@ -492,11 +508,12 @@
       "userId": "user_demo_01",
       "chapterNumber": 1,
       "title": "The Vitreous Oath",
-      "content": "The wind sweeping through the Whispering Hollows tasted of ozone and pulverized silver.\n\nValen adjusted the heavy leather vambrace over his left arm, grimacing as the dark crystalline tendrils pulsed beneath his skin. With each beat of his mortal heart, the Umbra shard rooted deeper, a cold ember promising vengeance at the toll of his humanity.\n\n\"If you keep touching it, the resonance will wake every Hound within five leagues,\" Selyse muttered without lifting her gaze from the brass-bound astrolabe spread across the petrified stump.\n\n\"Let them come,\" Korath rumbled from the tree line, grinding the tip of his titan-gilded maul into the crystalline loam. \"My hammer hasn't tasted Imperial iron since the tide turned red at Thalor.\"\n\nValen stepped into the clearing, the twilight glow catching the sharp edges of his jaw. \"The Regency isn't hunting us with ordinary soldiers, Korath. The Grand Inquisitor has deployed the Vitreous Skiffs. They fly on stolen lunar glass.\"\n\nSelyse traced a fingertip over the parchment's glowing blue margin. \"And according to the codex, those skiffs are heading directly for the Sunken Spires. If they reach the Moon Vault before we do, there won't be an Aethelgard left to liberate.\"\n\nValen looked toward the jagged silhouettes of the eastern mountains where the ruined spires slept under the waves. The time for hiding in shadows was over.",
-      "wordCount": 224,
+      "content": "The wind sweeping through the Whispering Hollows tasted of ozone and pulverized silver.\n\nValen adjusted the heavy leather vambrace over his left arm, grimacing as the dark crystalline tendrils pulsed beneath his skin. With each beat of his mortal heart, the Umbra shard rooted deeper, a cold ember promising vengeance at the toll of his humanity.\n\n\"If you keep touching it, the resonance will wake every Hound within five leagues,\" Selyse muttered without lifting her gaze from the brass-bound astrolabe spread across the petrified stump.\n\n\"Let them come,\" Korath rumbled from the tree line, grinding the tip of his titan-gilded maul into the crystalline loam. \"My hammer hasn't tasted Imperial iron since the tide turned red at Thalor.\"\n\nValen stepped into the clearing, the twilight glow catching the sharp edges of his jaw. \"The Regency isn't hunting us with ordinary soldiers, Korath. The Grand Inquisitor has deployed the Vitreous Skiffs. They fly on stolen lunar glass.\"\n\nSelyse traced a fingertip over the parchment's glowing blue margin. \"And according to the codex, those skiffs are heading directly for the Sunken Spires. If they reach the Moon Vault before we do, there won't be an Aethelgard left to liberate.\"\n\nValen looked toward the jagged silhouettes of the eastern mountains where the ruined spires slept under the waves. The time for hiding in shadows was over.\n\nThe dawn broke in jagged fractures of light above The Citadel of Dawn, casting elongated shadows across the ancient stone paving. A cold wind whistled through the carved friezes, carrying with it the unmistakable scent of ozone and unsettled dust.\n\nPrince Valen Shadowthorn stood motionless upon the parapet, fingers tracing the worn edge of their weapon. Beneath their skin, the familiar pull of Aetheric Resonance: Sorcery requires attunement to lunar crystalline shards. Casting draws spiritual heat from the caster; overuse causes crystallization of the veins (The Vitreous Blight). stirred like embers fanned by a sudden draft. Every breath felt deliberate, measured against the weight of the oaths sworn when the kingdom first splintered.\n\n\"You've been watching the northern ridge since midnight,\" High Archivist Selyse Vane remarked, stepping softly from the shadowed archway with a faint rustle of traveling cloaks. \"The scouts report no movement from the vanguard. If they're coming, they are marching under the cover of the mist.\"\n\nPrince Valen Shadowthorn turned, eyes reflecting the pale luminescence of the horizon. \"That is precisely what worries me. They don't need a host of thousands when a single breach in the wards of The Citadel of Dawn will shatter the entire province's defenses. Look at the horizon—the leylines are flickering.\"\n\nHigh Archivist Selyse Vane moved alongside the rampart, following Prince Valen Shadowthorn's gaze toward the distant ridgeline where dark silhouettes of iron dreadnoughts and watchtowers crowned the cliffs. \"Then we have until sundown before the resonance reaches critical mass. Whatever we do next will determine whether The Shattered Realm of Aethelgard survives to see the next moon.\"\n\nWith a resolute nod, Prince Valen Shadowthorn tightened the fastenings on their armor. The council had deliberated for months, but the time for diplomatic scrolls had passed. Tonight, the fate of the realm would be settled in blood, iron, and aether.",
+      "wordCount": 530,
       "summary": "Valen, Selyse, and Korath confer in the Whispering Hollows, realizing the Ashen Regency is racing toward the Sunken Spires to plunder the Moon Vault.",
-      "autoSavedAt": "2026-11-14T16:51:00.775Z",
-      "createdAt": "2026-10-30T16:51:00.775Z"
+      "autoSavedAt": "2026-11-14T17:10:53.367Z",
+      "createdAt": "2026-10-30T16:51:00.775Z",
+      "updatedAt": "2026-11-14T17:10:53.367Z"
     }
   ],
   "dialogues": [
@@ -779,6 +796,50 @@
       "universeId": "uni_aethelgard_01",
       "actionType": "Continuity Audit",
       "promptPreview": "The dawn broke in jagged fractures of light above The Citadel of Dawn, casting elongated shadows acr",
+      "tokens": 400,
+      "creditsDeducted": 10,
+      "model": "StoryVerse Contextual Engine v2.4 (Context-Synthesized)"
+    },
+    {
+      "id": "aiUs_cc9558e340",
+      "createdAt": "2026-11-14T17:10:52.155Z",
+      "userId": "user_8e67e78cde",
+      "universeId": "uni_aethelgard_01",
+      "actionType": "Chapter Generation",
+      "promptPreview": "Write Chapter 1 developing the central conflict.",
+      "tokens": 400,
+      "creditsDeducted": 10,
+      "model": "StoryVerse Contextual Engine v2.4 (Context-Synthesized)"
+    },
+    {
+      "id": "aiUs_5dbbf4bd35",
+      "createdAt": "2026-11-14T17:11:02.346Z",
+      "userId": "user_8e67e78cde",
+      "universeId": "uni_aethelgard_01",
+      "actionType": "Plot Twist Engine",
+      "promptPreview": "When the exiled Prince Valen uncovers an ancient prophecy deciphered by a rogue archivist, he must decide whether to save his own soul from crystal co",
+      "tokens": 320,
+      "creditsDeducted": 8,
+      "model": "StoryVerse Contextual Engine v2.4 (Context-Synthesized)"
+    },
+    {
+      "id": "aiUs_511a577e1b",
+      "createdAt": "2026-11-14T17:11:07.823Z",
+      "userId": "user_8e67e78cde",
+      "universeId": "uni_aethelgard_01",
+      "actionType": "Continuity Audit",
+      "promptPreview": "The wind sweeping through the Whispering Hollows tasted of ozone and pulverized silver.\n\nValen adjus",
+      "tokens": 400,
+      "creditsDeducted": 10,
+      "model": "StoryVerse Contextual Engine v2.4 (Context-Synthesized)"
+    },
+    {
+      "id": "aiUs_3c132f8cf7",
+      "createdAt": "2026-11-14T17:11:28.311Z",
+      "userId": "user_8e67e78cde",
+      "universeId": "uni_aethelgard_01",
+      "actionType": "Dialogue Generation",
+      "promptPreview": "A secret pact regarding the broken seal",
       "tokens": 400,
       "creditsDeducted": 10,
       "model": "StoryVerse Contextual Engine v2.4 (Context-Synthesized)"
