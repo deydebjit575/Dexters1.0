@@ -1,4 +1,4 @@
-# 🌌 STORYVERSE AI
+# 🌌 STORYVERSE 
 **"Imagine Worlds. Create Stories. Build Universes."**
 
 A modern, colorful, premium-quality AI-powered storytelling and world-building SaaS platform designed for authors, novelists, game developers, screenwriters, students, and creative teams.
