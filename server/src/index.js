@@ -60,7 +60,7 @@ app.use('/api/export', exportRoutes);
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'healthy',
-    platform: 'STORYVERSE AI',
+    platform: 'STORYVERSE',
     tagline: 'Imagine Worlds. Create Stories. Build Universes.',
     timestamp: new Date().toISOString(),
   });
@@ -83,6 +83,6 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🌌 STORYVERSE AI running on http://localhost:${PORT}`);
+  console.log(`🌌 STORYVERSE running on http://localhost:${PORT}`);
 });
 

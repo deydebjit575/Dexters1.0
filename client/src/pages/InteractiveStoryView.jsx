@@ -193,7 +193,7 @@ export default function InteractiveStoryView() {
         type: 'branching',
         itemId: activeStory.id,
         title: activeStory.title,
-        summary: activeStory.synopsis || 'An interactive branching narrative created on StoryVerse AI.',
+        summary: activeStory.synopsis || 'An interactive branching narrative created on StoryVerse.',
         genre: activeUniverse.genre,
         tags: [activeUniverse.genre, 'Interactive Fiction', 'Branching Story'],
       });

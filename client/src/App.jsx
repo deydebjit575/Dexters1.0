@@ -27,7 +27,7 @@ function MainApp() {
           <span className="font-black text-xl">S</span>
         </div>
         <div className="text-sm font-bold text-gray-800 dark:text-gray-200">
-          Loading StoryVerse AI...
+          Loading StoryVerse...
         </div>
         <div className="text-xs text-gray-400 mt-1">
           Synchronizing Connected Universe Engine

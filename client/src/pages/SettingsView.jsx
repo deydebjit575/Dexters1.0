@@ -309,7 +309,7 @@ export default function SettingsView() {
           </div>
 
           <div className="p-4 rounded-2xl bg-gray-50 dark:bg-gray-800/40 border border-gray-100 dark:border-gray-800 text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
-            <strong>System Architecture Note:</strong> When no API key is provided, StoryVerse AI executes in our high-fidelity Demo Mode, using our proprietary Contextual Lore Synthesizer. To connect directly to live Gemini or OpenAI models, paste your secret key below. Keys are stored encrypted and never leaked to frontend clients.
+            <strong>System Architecture Note:</strong> When no API key is provided, StoryVerse executes in our high-fidelity Demo Mode, using our proprietary Contextual Lore Synthesizer. To connect directly to live Gemini or OpenAI models, paste your secret key below. Keys are stored encrypted and never leaked to frontend clients.
           </div>
 
           <div>

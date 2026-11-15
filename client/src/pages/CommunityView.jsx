@@ -269,7 +269,7 @@ export default function CommunityView() {
             </div>
 
             <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed bg-gray-50 dark:bg-gray-800/40 p-3 rounded-2xl border border-gray-100 dark:border-gray-800 mb-6">
-              {selectedCreator.creator.bio || 'Worldbuilder exploring interconnected storylines on StoryVerse AI.'}
+              {selectedCreator.creator.bio || 'Worldbuilder exploring interconnected storylines on StoryVerse.'}
             </p>
 
             <div className="space-y-4">

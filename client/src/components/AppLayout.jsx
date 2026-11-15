@@ -66,12 +66,9 @@ export default function AppLayout({ activeTab, onSelectTab, children }) {
             <Sparkles className="w-5 h-5 animate-pulse" />
           </div>
           <div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center">
               <span className="font-black text-lg tracking-tight bg-gradient-to-r from-primary to-electric bg-clip-text text-transparent">
                 STORYVERSE
-              </span>
-              <span className="text-[9px] uppercase font-bold tracking-widest px-1 py-0.2 rounded bg-primary/10 text-primary">
-                AI
               </span>
             </div>
             <div className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">

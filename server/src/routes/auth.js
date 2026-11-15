@@ -41,7 +41,7 @@ router.post('/register', async (req, res) => {
     const { passwordHash: _, ...safeUser } = newUser;
 
     res.status(201).json({
-      message: 'Account created successfully! Welcome to StoryVerse AI.',
+      message: 'Account created successfully! Welcome to StoryVerse.',
       user: safeUser,
       token,
     });

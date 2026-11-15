@@ -100,7 +100,7 @@ export const AuthProvider = ({ children }) => {
     setToken(data.token);
     setUser(data.user);
     await refreshUniverses();
-    showToast('Account created! Welcome to StoryVerse AI.', 'success');
+    showToast('Account created! Welcome to StoryVerse.', 'success');
     return data.user;
   };
 

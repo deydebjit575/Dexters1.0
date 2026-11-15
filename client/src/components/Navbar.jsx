@@ -57,9 +57,6 @@ export default function Navbar({ onOpenAuth, onNavigate }) {
             <span className="font-extrabold text-xl text-white tracking-tight">
               StoryVerse
             </span>
-            <span className="font-extrabold text-xl text-[#20A5D8] ml-1 bg-gradient-to-r from-[#20A5D8] to-[#38BDF8] bg-clip-text text-transparent">
-              AI
-            </span>
           </div>
         </div>
 
